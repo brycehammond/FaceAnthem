@@ -25,9 +25,9 @@
 		022C827F1897311400CA4953 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C827E1897311400CA4953 /* CoreImage.framework */; };
 		022C82811897343700CA4953 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C82801897343700CA4953 /* QuartzCore.framework */; };
 		022C82831897343C00CA4953 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C82821897343C00CA4953 /* AVFoundation.framework */; };
-		022C8285189735EE00CA4953 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 022C8284189735EE00CA4953 /* border.png */; };
 		022C82871897365800CA4953 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C82861897365800CA4953 /* AssetsLibrary.framework */; };
 		022C82891897365D00CA4953 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C82881897365D00CA4953 /* ImageIO.framework */; };
+		022C829218976A0100CA4953 /* FAFaceFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C829118976A0100CA4953 /* FAFaceFinder.m */; };
 		C8D015C4EFD540DCB477AF28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 020A7AD7B4654E87B5ADB98B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,9 +66,10 @@
 		022C827E1897311400CA4953 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		022C82801897343700CA4953 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		022C82821897343C00CA4953 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		022C8284189735EE00CA4953 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
 		022C82861897365800CA4953 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		022C82881897365D00CA4953 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		022C829018976A0100CA4953 /* FAFaceFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAFaceFinder.h; path = Code/FAFaceFinder.h; sourceTree = "<group>"; };
+		022C829118976A0100CA4953 /* FAFaceFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAFaceFinder.m; path = Code/FAFaceFinder.m; sourceTree = "<group>"; };
 		70E3271B0C2B476AAC4C0D01 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,8 +149,9 @@
 				022C825B18972E8900CA4953 /* Main_iPad.storyboard */,
 				022C825E18972E8900CA4953 /* FARootViewController.h */,
 				022C825F18972E8900CA4953 /* FARootViewController.m */,
+				022C829018976A0100CA4953 /* FAFaceFinder.h */,
+				022C829118976A0100CA4953 /* FAFaceFinder.m */,
 				022C826118972E8900CA4953 /* Images.xcassets */,
-				022C8284189735EE00CA4953 /* border.png */,
 				022C824D18972E8900CA4953 /* Supporting Files */,
 			);
 			path = FaceAnthem;
@@ -267,7 +269,6 @@
 				022C826218972E8900CA4953 /* Images.xcassets in Resources */,
 				022C825A18972E8900CA4953 /* Main_iPhone.storyboard in Resources */,
 				022C825118972E8900CA4953 /* InfoPlist.strings in Resources */,
-				022C8285189735EE00CA4953 /* border.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +323,7 @@
 				022C825718972E8900CA4953 /* FAAppDelegate.m in Sources */,
 				022C825318972E8900CA4953 /* main.m in Sources */,
 				022C826018972E8900CA4953 /* FARootViewController.m in Sources */,
+				022C829218976A0100CA4953 /* FAFaceFinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

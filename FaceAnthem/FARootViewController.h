@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
+#import "FAFaceFinder.h"
 
-@interface FARootViewController : UIViewController <UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface FARootViewController : UIViewController <UIGestureRecognizerDelegate, FAFaceFinderDelegate>
 
 @property (nonatomic, weak) IBOutlet UIView *previewView;
 
