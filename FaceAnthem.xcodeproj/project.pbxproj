@@ -12,10 +12,10 @@
 		022C824B18972E8900CA4953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824A18972E8900CA4953 /* UIKit.framework */; };
 		022C825118972E8900CA4953 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 022C824F18972E8900CA4953 /* InfoPlist.strings */; };
 		022C825318972E8900CA4953 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C825218972E8900CA4953 /* main.m */; };
-		022C825718972E8900CA4953 /* IMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C825618972E8900CA4953 /* IMAppDelegate.m */; };
+		022C825718972E8900CA4953 /* FAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C825618972E8900CA4953 /* FAAppDelegate.m */; };
 		022C825A18972E8900CA4953 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022C825818972E8900CA4953 /* Main_iPhone.storyboard */; };
 		022C825D18972E8900CA4953 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022C825B18972E8900CA4953 /* Main_iPad.storyboard */; };
-		022C826018972E8900CA4953 /* IMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C825F18972E8900CA4953 /* IMViewController.m */; };
+		022C826018972E8900CA4953 /* FARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C825F18972E8900CA4953 /* FARootViewController.m */; };
 		022C826218972E8900CA4953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 022C826118972E8900CA4953 /* Images.xcassets */; };
 		022C826918972E8900CA4953 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C826818972E8900CA4953 /* XCTest.framework */; };
 		022C826A18972E8900CA4953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824618972E8900CA4953 /* Foundation.framework */; };
@@ -51,12 +51,12 @@
 		022C825018972E8900CA4953 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		022C825218972E8900CA4953 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		022C825418972E8900CA4953 /* FaceAnthem-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceAnthem-Prefix.pch"; sourceTree = "<group>"; };
-		022C825518972E8900CA4953 /* IMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMAppDelegate.h; sourceTree = "<group>"; };
-		022C825618972E8900CA4953 /* IMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMAppDelegate.m; sourceTree = "<group>"; };
+		022C825518972E8900CA4953 /* FAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAAppDelegate.h; sourceTree = "<group>"; };
+		022C825618972E8900CA4953 /* FAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FAAppDelegate.m; sourceTree = "<group>"; };
 		022C825918972E8900CA4953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		022C825C18972E8900CA4953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		022C825E18972E8900CA4953 /* IMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMViewController.h; sourceTree = "<group>"; };
-		022C825F18972E8900CA4953 /* IMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMViewController.m; sourceTree = "<group>"; };
+		022C825E18972E8900CA4953 /* FARootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FARootViewController.h; sourceTree = "<group>"; };
+		022C825F18972E8900CA4953 /* FARootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FARootViewController.m; sourceTree = "<group>"; };
 		022C826118972E8900CA4953 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		022C826718972E8900CA4953 /* FaceAnthemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceAnthemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		022C826818972E8900CA4953 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -142,12 +142,12 @@
 		022C824C18972E8900CA4953 /* FaceAnthem */ = {
 			isa = PBXGroup;
 			children = (
-				022C825518972E8900CA4953 /* IMAppDelegate.h */,
-				022C825618972E8900CA4953 /* IMAppDelegate.m */,
+				022C825518972E8900CA4953 /* FAAppDelegate.h */,
+				022C825618972E8900CA4953 /* FAAppDelegate.m */,
 				022C825818972E8900CA4953 /* Main_iPhone.storyboard */,
 				022C825B18972E8900CA4953 /* Main_iPad.storyboard */,
-				022C825E18972E8900CA4953 /* IMViewController.h */,
-				022C825F18972E8900CA4953 /* IMViewController.m */,
+				022C825E18972E8900CA4953 /* FARootViewController.h */,
+				022C825F18972E8900CA4953 /* FARootViewController.m */,
 				022C826118972E8900CA4953 /* Images.xcassets */,
 				022C8284189735EE00CA4953 /* border.png */,
 				022C824D18972E8900CA4953 /* Supporting Files */,
@@ -230,7 +230,7 @@
 		022C823B18972E8900CA4953 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = IM;
+				CLASSPREFIX = FA;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Imulus;
 				TargetAttributes = {
@@ -319,9 +319,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				022C825718972E8900CA4953 /* IMAppDelegate.m in Sources */,
+				022C825718972E8900CA4953 /* FAAppDelegate.m in Sources */,
 				022C825318972E8900CA4953 /* main.m in Sources */,
-				022C826018972E8900CA4953 /* IMViewController.m in Sources */,
+				022C826018972E8900CA4953 /* FARootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Imulus. All rights reserved.
 //
 
-#import "IMAppDelegate.h"
+#import "FAAppDelegate.h"
 
-@implementation IMAppDelegate
+@implementation FAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Imulus. All rights reserved.
 //
 
-#import "IMViewController.h"
+#import "FARootViewController.h"
 #import <ImageIO/ImageIO.h>
 #import <AssertMacros.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface IMViewController ()
+@interface FARootViewController ()
 
 @property (nonatomic) BOOL isUsingFrontFacingCamera;
 @property (nonatomic, strong) AVCaptureVideoDataOutput *videoDataOutput;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation IMViewController
+@implementation FARootViewController
 
 - (void)setupAVCapture
 {
@@ -71,8 +71,7 @@
         self.videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
         
         // we want BGRA, both CoreGraphics and OpenGL work well with 'BGRA'
-        NSDictionary *rgbOutputSettings = [NSDictionary dictionaryWithObject:
-                                           [NSNumber numberWithInt:kCMPixelFormat_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+        NSDictionary *rgbOutputSettings = @{(id)kCVPixelBufferPixelFormatTypeKey: @(kCMPixelFormat_32BGRA)};
         [self.videoDataOutput setVideoSettings:rgbOutputSettings];
         [self.videoDataOutput setAlwaysDiscardsLateVideoFrames:YES]; // discard if the data output queue is blocked
         
@@ -239,7 +238,7 @@
 		
 		// re-use an existing layer if possible
 		while ( !featureLayer && (currentSublayer < sublayersCount) ) {
-			CALayer *currentLayer = [sublayers objectAtIndex:currentSublayer++];
+			CALayer *currentLayer = sublayers[currentSublayer++];
 			if ( [[currentLayer name] isEqualToString:@"FaceLayer"] ) {
 				featureLayer = currentLayer;
 				[currentLayer setHidden:NO];
@@ -249,7 +248,8 @@
 		// create a new one if necessary
 		if ( !featureLayer ) {
 			featureLayer = [[CALayer alloc]init];
-			featureLayer.contents = (id)self.borderImage.CGImage;
+            featureLayer.borderColor = [UIColor redColor].CGColor;
+            featureLayer.borderWidth = 2.0f;
 			[featureLayer setName:@"FaceLayer"];
 			[self.previewLayer addSublayer:featureLayer];
 			featureLayer = nil;
@@ -323,7 +323,7 @@
 			exifOrientation = PHOTOS_EXIF_0ROW_RIGHT_0COL_TOP;
 			break;
 	}
-    return [NSNumber numberWithInt:exifOrientation];
+    return @(exifOrientation);
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
@@ -344,8 +344,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
 	NSDictionary *imageOptions = nil;
     
-	imageOptions = [NSDictionary dictionaryWithObject:[self exifOrientation:curDeviceOrientation]
-                                               forKey:CIDetectorImageOrientation];
+	imageOptions = @{CIDetectorImageOrientation: [self exifOrientation:curDeviceOrientation]};
     
 	NSArray *features = [self.faceDetector featuresInImage:ciImage
                                                    options:imageOptions];
@@ -374,8 +373,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
 	[self setupAVCapture];
-	self.borderImage = [UIImage imageNamed:@"border"];
-	NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
+	NSDictionary *detectorOptions = @{CIDetectorAccuracy: CIDetectorAccuracyLow};
 	self.faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
 }
 
@@ -386,7 +384,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     // e.g. self.myOutlet = nil;
     [self teardownAVCapture];
 	self.faceDetector = nil;
-	self.borderImage = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
