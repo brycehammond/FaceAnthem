@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FAFaceFinder.h"
+#import "FAFaceAssignmentViewController.h"
 
-@interface FARootViewController : UIViewController <UIGestureRecognizerDelegate, FAFaceFinderDelegate>
+@interface FARootViewController : UIViewController <UIGestureRecognizerDelegate, FAFaceFinderDelegate, FAFaceAssignmentViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIView *previewView;
 

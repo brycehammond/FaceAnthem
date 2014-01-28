@@ -13,12 +13,13 @@
 
 @property (nonatomic) BOOL isUsingFrontFacingCamera;
 @property (nonatomic, strong) AVCaptureVideoDataOutput *videoDataOutput;
+@property (nonatomic, strong) AVCaptureStillImageOutput *imageDataOutput;
 @property (nonatomic) dispatch_queue_t videoDataOutputQueue;
-@property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 
 @property (nonatomic, strong) CIDetector *faceDetector;
 
 @property (nonatomic, strong) UIView *previewView;
+@property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 
 @end
 
@@ -40,6 +41,43 @@
 - (void)dealloc
 {
     [self teardownAVCapture];
+}
+
+- (void)captureImageWithCompletion:(void (^)(UIImage *))completion
+{
+    AVCaptureConnection *videoConnection = nil;
+	for (AVCaptureConnection *connection in [self.imageDataOutput connections]) {
+		for (AVCaptureInputPort *port in [connection inputPorts]) {
+			if ([[port mediaType] isEqual:AVMediaTypeVideo]) {
+				videoConnection = connection;
+				break;
+			}
+		}
+		if (videoConnection) {
+            break;
+        }
+	}
+    
+    [self.imageDataOutput captureStillImageAsynchronouslyFromConnection:videoConnection
+                                                         completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
+                                     
+                                                             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+                                                             UIImage *image = [[UIImage alloc] initWithData:imageData];
+                                                             
+                                                             CGSize newSize = CGSizeMake(320, ceil(320 / image.size.width * image.size.height));
+                                                             UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+                                                             [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+                                                             UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+                                                            
+                                                             
+                                                             UIGraphicsEndImageContext();
+                                                             
+                                                             newImage = [UIImage imageWithCGImage:newImage.CGImage
+                                                                                            scale:newImage.scale orientation: UIImageOrientationUpMirrored];
+                                                             
+                                                              if(completion)
+                                                                  completion(newImage);
+                                                         }];
 }
 
 - (void)setupAVCapture
@@ -97,13 +135,20 @@
         // see the header doc for setSampleBufferDelegate:queue: for more information
         self.videoDataOutputQueue = dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
         [self.videoDataOutput setSampleBufferDelegate:self queue:self.videoDataOutputQueue];
-        
+
         if ( [session canAddOutput:self.videoDataOutput] ){
             [session addOutput:self.videoDataOutput];
         }
         
         // get the output for doing face detection.
         [[self.videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:YES];
+        
+        self.imageDataOutput = [[AVCaptureStillImageOutput alloc] init];
+        self.imageDataOutput.outputSettings = @{ AVVideoCodecKey : AVVideoCodecJPEG};
+        
+        if([session canAddOutput:self.imageDataOutput]) {
+            [session addOutput:self.imageDataOutput];
+        }
         
         self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
         self.previewLayer.backgroundColor = [[UIColor blackColor] CGColor];
@@ -357,6 +402,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
 	CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer
                                                       options:(__bridge NSDictionary *)attachments];
+    
 	if (attachments) {
 		CFRelease(attachments);
     }

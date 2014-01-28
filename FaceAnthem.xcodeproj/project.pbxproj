@@ -28,6 +28,8 @@
 		022C82871897365800CA4953 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C82861897365800CA4953 /* AssetsLibrary.framework */; };
 		022C82891897365D00CA4953 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C82881897365D00CA4953 /* ImageIO.framework */; };
 		022C829218976A0100CA4953 /* FAFaceFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C829118976A0100CA4953 /* FAFaceFinder.m */; };
+		022C82951897775E00CA4953 /* FAFaceAssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C82941897775E00CA4953 /* FAFaceAssignmentViewController.m */; };
+		022C829918977CC800CA4953 /* UIStoryboard+FaceAnthem.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C829818977CC800CA4953 /* UIStoryboard+FaceAnthem.m */; };
 		C8D015C4EFD540DCB477AF28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 020A7AD7B4654E87B5ADB98B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,10 @@
 		022C82881897365D00CA4953 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		022C829018976A0100CA4953 /* FAFaceFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAFaceFinder.h; path = Code/FAFaceFinder.h; sourceTree = "<group>"; };
 		022C829118976A0100CA4953 /* FAFaceFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAFaceFinder.m; path = Code/FAFaceFinder.m; sourceTree = "<group>"; };
+		022C82931897775E00CA4953 /* FAFaceAssignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAFaceAssignmentViewController.h; path = Code/FAFaceAssignmentViewController.h; sourceTree = "<group>"; };
+		022C82941897775E00CA4953 /* FAFaceAssignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAFaceAssignmentViewController.m; path = Code/FAFaceAssignmentViewController.m; sourceTree = "<group>"; };
+		022C829718977CC800CA4953 /* UIStoryboard+FaceAnthem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIStoryboard+FaceAnthem.h"; path = "Code/UIStoryboard+FaceAnthem.h"; sourceTree = "<group>"; };
+		022C829818977CC800CA4953 /* UIStoryboard+FaceAnthem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIStoryboard+FaceAnthem.m"; path = "Code/UIStoryboard+FaceAnthem.m"; sourceTree = "<group>"; };
 		70E3271B0C2B476AAC4C0D01 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,12 +149,15 @@
 		022C824C18972E8900CA4953 /* FaceAnthem */ = {
 			isa = PBXGroup;
 			children = (
+				022C829618977C8200CA4953 /* Categories */,
 				022C825518972E8900CA4953 /* FAAppDelegate.h */,
 				022C825618972E8900CA4953 /* FAAppDelegate.m */,
 				022C825818972E8900CA4953 /* Main_iPhone.storyboard */,
 				022C825B18972E8900CA4953 /* Main_iPad.storyboard */,
 				022C825E18972E8900CA4953 /* FARootViewController.h */,
 				022C825F18972E8900CA4953 /* FARootViewController.m */,
+				022C82931897775E00CA4953 /* FAFaceAssignmentViewController.h */,
+				022C82941897775E00CA4953 /* FAFaceAssignmentViewController.m */,
 				022C829018976A0100CA4953 /* FAFaceFinder.h */,
 				022C829118976A0100CA4953 /* FAFaceFinder.m */,
 				022C826118972E8900CA4953 /* Images.xcassets */,
@@ -184,6 +193,15 @@
 				022C827118972E8900CA4953 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		022C829618977C8200CA4953 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				022C829718977CC800CA4953 /* UIStoryboard+FaceAnthem.h */,
+				022C829818977CC800CA4953 /* UIStoryboard+FaceAnthem.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,7 +338,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				022C829918977CC800CA4953 /* UIStoryboard+FaceAnthem.m in Sources */,
 				022C825718972E8900CA4953 /* FAAppDelegate.m in Sources */,
+				022C82951897775E00CA4953 /* FAFaceAssignmentViewController.m in Sources */,
 				022C825318972E8900CA4953 /* main.m in Sources */,
 				022C826018972E8900CA4953 /* FARootViewController.m in Sources */,
 				022C829218976A0100CA4953 /* FAFaceFinder.m in Sources */,
