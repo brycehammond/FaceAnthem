@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		02F423CB189D80B100042E9D /* MOGenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 02F423CC189D80B100042E9D /* Build configuration list for PBXAggregateTarget "MOGenerator" */;
+			buildPhases = (
+				02F423CF189D80CC00042E9D /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = MOGenerator;
+			productName = MOGenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		022C824718972E8900CA4953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824618972E8900CA4953 /* Foundation.framework */; };
 		022C824918972E8900CA4953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824818972E8900CA4953 /* CoreGraphics.framework */; };
@@ -30,6 +44,9 @@
 		022C829218976A0100CA4953 /* FAFaceFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C829118976A0100CA4953 /* FAFaceFinder.m */; };
 		022C82951897775E00CA4953 /* FAFaceAssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C82941897775E00CA4953 /* FAFaceAssignmentViewController.m */; };
 		022C829918977CC800CA4953 /* UIStoryboard+FaceAnthem.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C829818977CC800CA4953 /* UIStoryboard+FaceAnthem.m */; };
+		02F423C2189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02F423C0189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld */; };
+		02F423C6189D7FD000042E9D /* FAPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F423C5189D7FD000042E9D /* FAPerson.m */; };
+		02F423CA189D7FEA00042E9D /* _FAPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F423C9189D7FEA00042E9D /* _FAPerson.m */; };
 		C8D015C4EFD540DCB477AF28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 020A7AD7B4654E87B5ADB98B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +93,11 @@
 		022C82941897775E00CA4953 /* FAFaceAssignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAFaceAssignmentViewController.m; path = Code/FAFaceAssignmentViewController.m; sourceTree = "<group>"; };
 		022C829718977CC800CA4953 /* UIStoryboard+FaceAnthem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIStoryboard+FaceAnthem.h"; path = "Code/UIStoryboard+FaceAnthem.h"; sourceTree = "<group>"; };
 		022C829818977CC800CA4953 /* UIStoryboard+FaceAnthem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIStoryboard+FaceAnthem.m"; path = "Code/UIStoryboard+FaceAnthem.m"; sourceTree = "<group>"; };
+		02F423C1189D7E3200042E9D /* FaceAnthemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FaceAnthemModel.xcdatamodel; sourceTree = "<group>"; };
+		02F423C4189D7FD000042E9D /* FAPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPerson.h; path = Code/FAPerson.h; sourceTree = "<group>"; };
+		02F423C5189D7FD000042E9D /* FAPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPerson.m; path = Code/FAPerson.m; sourceTree = "<group>"; };
+		02F423C8189D7FEA00042E9D /* _FAPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FAPerson.h; path = Code/MOGenerated/_FAPerson.h; sourceTree = "<group>"; };
+		02F423C9189D7FEA00042E9D /* _FAPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FAPerson.m; path = Code/MOGenerated/_FAPerson.m; sourceTree = "<group>"; };
 		70E3271B0C2B476AAC4C0D01 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +237,7 @@
 		02F423BB189D70AA00042E9D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				02F423C3189D7FBD00042E9D /* CoreData */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -226,6 +249,26 @@
 				022C825B18972E8900CA4953 /* Main_iPad.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		02F423C3189D7FBD00042E9D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				02F423C7189D7FD500042E9D /* MOGenerated */,
+				02F423C4189D7FD000042E9D /* FAPerson.h */,
+				02F423C5189D7FD000042E9D /* FAPerson.m */,
+				02F423C0189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		02F423C7189D7FD500042E9D /* MOGenerated */ = {
+			isa = PBXGroup;
+			children = (
+				02F423C8189D7FEA00042E9D /* _FAPerson.h */,
+				02F423C9189D7FEA00042E9D /* _FAPerson.m */,
+			);
+			name = MOGenerated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +341,7 @@
 			targets = (
 				022C824218972E8900CA4953 /* FaceAnthem */,
 				022C826618972E8900CA4953 /* FaceAnthemTests */,
+				02F423CB189D80B100042E9D /* MOGenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -325,6 +369,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		02F423CF189D80CC00042E9D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH=${PATH}:/usr/local/bin\ncd \"${PROJECT_DIR}/FaceAnthem\"\nmogenerator --human-dir Code --machine-dir Code/MOGenerated --model FaceAnthemModel.xcdatamodeld/FaceAnthemModel.xcdatamodel --template-var arc=true";
+		};
 		08FCFCC3B0674CAEBB9A7F7B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +422,9 @@
 				022C829918977CC800CA4953 /* UIStoryboard+FaceAnthem.m in Sources */,
 				022C825718972E8900CA4953 /* FAAppDelegate.m in Sources */,
 				022C82951897775E00CA4953 /* FAFaceAssignmentViewController.m in Sources */,
+				02F423C6189D7FD000042E9D /* FAPerson.m in Sources */,
+				02F423CA189D7FEA00042E9D /* _FAPerson.m in Sources */,
+				02F423C2189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld in Sources */,
 				022C825318972E8900CA4953 /* main.m in Sources */,
 				022C826018972E8900CA4953 /* FARootViewController.m in Sources */,
 				022C829218976A0100CA4953 /* FAFaceFinder.m in Sources */,
@@ -569,6 +629,20 @@
 			};
 			name = Release;
 		};
+		02F423CD189D80B100042E9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		02F423CE189D80B100042E9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -599,7 +673,28 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		02F423CC189D80B100042E9D /* Build configuration list for PBXAggregateTarget "MOGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02F423CD189D80B100042E9D /* Debug */,
+				02F423CE189D80B100042E9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		02F423C0189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				02F423C1189D7E3200042E9D /* FaceAnthemModel.xcdatamodel */,
+			);
+			currentVersion = 02F423C1189D7E3200042E9D /* FaceAnthemModel.xcdatamodel */;
+			path = FaceAnthemModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 022C823B18972E8900CA4953 /* Project object */;
 }
