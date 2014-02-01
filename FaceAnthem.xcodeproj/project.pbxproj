@@ -149,15 +149,12 @@
 		022C824C18972E8900CA4953 /* FaceAnthem */ = {
 			isa = PBXGroup;
 			children = (
+				02F423BC189D70B400042E9D /* Storyboards */,
+				02F423BB189D70AA00042E9D /* Models */,
+				02F423BA189D709100042E9D /* View Controllers */,
 				022C829618977C8200CA4953 /* Categories */,
 				022C825518972E8900CA4953 /* FAAppDelegate.h */,
 				022C825618972E8900CA4953 /* FAAppDelegate.m */,
-				022C825818972E8900CA4953 /* Main_iPhone.storyboard */,
-				022C825B18972E8900CA4953 /* Main_iPad.storyboard */,
-				022C825E18972E8900CA4953 /* FARootViewController.h */,
-				022C825F18972E8900CA4953 /* FARootViewController.m */,
-				022C82931897775E00CA4953 /* FAFaceAssignmentViewController.h */,
-				022C82941897775E00CA4953 /* FAFaceAssignmentViewController.m */,
 				022C829018976A0100CA4953 /* FAFaceFinder.h */,
 				022C829118976A0100CA4953 /* FAFaceFinder.m */,
 				022C826118972E8900CA4953 /* Images.xcassets */,
@@ -202,6 +199,33 @@
 				022C829818977CC800CA4953 /* UIStoryboard+FaceAnthem.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		02F423BA189D709100042E9D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				022C825E18972E8900CA4953 /* FARootViewController.h */,
+				022C825F18972E8900CA4953 /* FARootViewController.m */,
+				022C82931897775E00CA4953 /* FAFaceAssignmentViewController.h */,
+				022C82941897775E00CA4953 /* FAFaceAssignmentViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		02F423BB189D70AA00042E9D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		02F423BC189D70B400042E9D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				022C825818972E8900CA4953 /* Main_iPhone.storyboard */,
+				022C825B18972E8900CA4953 /* Main_iPad.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -116,6 +116,7 @@
     CGRect faceRect = CGRectOffset([self.faceRects[index] CGRectValue], 0, -self.faceFinder.previewRect.origin.y);
     faceRect = CGRectMake(faceRect.origin.x * scale, faceRect.origin.y * scale, faceRect.size.width * scale, faceRect.size.height * scale);
     
+    //Flip the co-ordinates of the rect if we are mirrored
     if(self.currentCaptureImage.imageOrientation == UIImageOrientationUpMirrored)
     {
         faceRect = CGRectMake((self.currentCaptureImage.size.width * scale) - faceRect.origin.x - faceRect.size.width, faceRect.origin.y, faceRect.size.width, faceRect.size.height);

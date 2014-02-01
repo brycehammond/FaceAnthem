@@ -16,7 +16,7 @@
 
 @end
 
-@interface FAFaceAssignmentViewController : UIViewController
+@interface FAFaceAssignmentViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIImage *previewImage;
 @property (nonatomic, weak) id<FAFaceAssignmentViewControllerDelegate> delegate;

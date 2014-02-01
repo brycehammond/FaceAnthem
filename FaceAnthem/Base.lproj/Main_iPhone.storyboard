@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="c4s-L6-jgp">
-                                <rect key="frame" x="0.0" y="60" width="320" height="480"/>
+                                <rect key="frame" x="103" y="87" width="115" height="102"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.2274509804" green="0.48627450979999998" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -50,16 +50,32 @@
                                     <action selector="donePressed:" destination="sSr-wN-ksl" eventType="touchUpInside" id="lUa-fJ-AXY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face Training" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V3l-B9-p2U">
+                                <rect key="frame" x="87" y="52" width="146" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ivg-iY-bqJ">
+                                <rect key="frame" x="0.0" y="210" width="320" height="358"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sSr-wN-ksl" id="HYJ-2Z-mSC"/>
+                                    <outlet property="delegate" destination="sSr-wN-ksl" id="2p9-Uh-mKz"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="previewImageView" destination="c4s-L6-jgp" id="UZ5-pv-YMy"/>
+                        <outlet property="tableView" destination="ivg-iY-bqJ" id="XPZ-MR-Rlj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SqF-4J-wDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="526" y="336"/>
+            <point key="canvasLocation" x="876" y="-87"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
