@@ -123,7 +123,7 @@
     
 	/// Create the cropped image
 	CGImageRef croppedImageRef = CGImageCreateWithImageInRect(self.currentCaptureImage.CGImage, faceRect);
-	UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef scale:scale orientation:UIImageOrientationUpMirrored ];//  self.currentCaptureImage.imageOrientation];
+	UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef scale:scale orientation:self.currentCaptureImage.imageOrientation ];
     
 	/// Cleanup
 	CGImageRelease(croppedImageRef);
