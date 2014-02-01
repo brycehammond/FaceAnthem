@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *faceRects;
 @property (nonatomic, strong) FAFaceFinder *faceFinder;
 @property (nonatomic, assign) NSUInteger tappedFaceIndex;
+@property (nonatomic, strong) UIImage *currentCaptureImage;
 
 @end
 
@@ -53,6 +54,9 @@
 {
     self.faces = faces;
     self.faceRects = rects;
+    [self.faceFinder captureImageWithCompletion:^(UIImage *image) {
+        self.currentCaptureImage = image;
+    }];
 }
 
 #pragma mark -
@@ -88,38 +92,43 @@
 
 - (void)presentFaceAssignment
 {
+    FAFaceAssignmentViewController *assignmentController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"FaceAssignment"];
     
-    [self.faceFinder captureImageWithCompletion:^(UIImage *image) {
-        FAFaceAssignmentViewController *assignmentController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"FaceAssignment"];
-        assignmentController.delegate = self;
-        assignmentController.previewImage = image;
-        [self presentViewController:assignmentController animated:YES completion:nil];
-    }];
+    assignmentController.delegate = self;
+    assignmentController.previewImage = [self currentTappedFace];
+    [self presentViewController:assignmentController animated:YES completion:nil];
     
     
 }
 
-- (UIImage *)currentSelectedFace
+- (UIImage *)currentTappedFace
 {
+    
     if(NSNotFound == self.tappedFaceIndex)
         return nil;
     
-    return [self imageForFaceAtIndex:self.tappedFaceIndex];
+    return [self faceAtIndex:self.tappedFaceIndex];
 }
 
-- (UIImage *)imageForFaceAtIndex:(NSUInteger)faceIndex
+- (UIImage *)faceAtIndex:(NSUInteger)index
 {
-    CGRect faceRect = [self.faceRects[faceIndex] CGRectValue];
+    CGFloat scale = self.currentCaptureImage.scale;
+    CGRect faceRect = CGRectOffset([self.faceRects[index] CGRectValue], 0, -self.faceFinder.previewRect.origin.y);
+    faceRect = CGRectMake(faceRect.origin.x * scale, faceRect.origin.y * scale, faceRect.size.width * scale, faceRect.size.height * scale);
     
+    if(self.currentCaptureImage.imageOrientation == UIImageOrientationUpMirrored)
+    {
+        faceRect = CGRectMake((self.currentCaptureImage.size.width * scale) - faceRect.origin.x - faceRect.size.width, faceRect.origin.y, faceRect.size.width, faceRect.size.height);
+    }
     
+	/// Create the cropped image
+	CGImageRef croppedImageRef = CGImageCreateWithImageInRect(self.currentCaptureImage.CGImage, faceRect);
+	UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef scale:scale orientation:UIImageOrientationUpMirrored ];//  self.currentCaptureImage.imageOrientation];
     
+	/// Cleanup
+	CGImageRelease(croppedImageRef);
+    return cropped;
     
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return image;
 }
 
 @end

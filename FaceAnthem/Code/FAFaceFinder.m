@@ -273,7 +273,8 @@
 	CGRect previewBox = [[self class] videoPreviewBoxForGravity:gravity
                                                       frameSize:parentFrameSize
                                                    apertureSize:clearAperture.size];
-	
+	_previewRect = previewBox;
+    
     NSMutableArray *faceRects = [[NSMutableArray alloc] init];
 	for ( CIFaceFeature *ff in features ) {
 		// find the correct position for the square layer within the previewLayer
@@ -297,6 +298,7 @@
 		faceRect.origin.y *= heightScaleBy;
         
         faceRect = CGRectOffset(faceRect, previewBox.origin.x + previewBox.size.width - faceRect.size.width - (faceRect.origin.x * 2), previewBox.origin.y);
+        [faceRects addObject:[NSValue valueWithCGRect:faceRect]];
 		
 		CALayer *featureLayer = nil;
 		
@@ -319,7 +321,6 @@
 			featureLayer = nil;
 		}
 		[featureLayer setFrame:faceRect];
-        [faceRects addObject:[NSValue valueWithCGRect:faceRect]];
 		
 		switch (orientation) {
 			case UIDeviceOrientationPortrait:
