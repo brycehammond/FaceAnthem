@@ -31,7 +31,6 @@
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     self.faceFinder = [[FAFaceFinder alloc] initWithPreviewView:self.previewView];
     self.faceFinder.delegate = self;
-    [self.previewView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previewTapped:)]];
 }
 
 - (void)awakeFromNib

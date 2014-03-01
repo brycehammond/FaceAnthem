@@ -7,16 +7,16 @@
 extern const struct FAPersonAttributes {
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *recognitionIdentifier;
-	__unsafe_unretained NSString *thumbnailData;
 } FAPersonAttributes;
 
 extern const struct FAPersonRelationships {
+	__unsafe_unretained NSString *pictures;
 } FAPersonRelationships;
 
 extern const struct FAPersonFetchedProperties {
 } FAPersonFetchedProperties;
 
-
+@class FAPicture;
 
 
 
@@ -58,12 +58,9 @@ extern const struct FAPersonFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSData* thumbnailData;
+@property (nonatomic, strong) FAPicture *pictures;
 
-
-
-//- (BOOL)validateThumbnailData:(id*)value_ error:(NSError**)error_;
-
+//- (BOOL)validatePictures:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -93,10 +90,9 @@ extern const struct FAPersonFetchedProperties {
 
 
 
-- (NSData*)primitiveThumbnailData;
-- (void)setPrimitiveThumbnailData:(NSData*)value;
 
-
+- (FAPicture*)primitivePictures;
+- (void)setPrimitivePictures:(FAPicture*)value;
 
 
 @end

@@ -6,10 +6,10 @@
 const struct FAPersonAttributes FAPersonAttributes = {
 	.name = @"name",
 	.recognitionIdentifier = @"recognitionIdentifier",
-	.thumbnailData = @"thumbnailData",
 };
 
 const struct FAPersonRelationships FAPersonRelationships = {
+	.pictures = @"pictures",
 };
 
 const struct FAPersonFetchedProperties FAPersonFetchedProperties = {
@@ -86,12 +86,9 @@ const struct FAPersonFetchedProperties FAPersonFetchedProperties = {
 
 
 
-@dynamic thumbnailData;
+@dynamic pictures;
 
-
-
-
-
+	
 
 
 
