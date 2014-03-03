@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="486" y="190"/>
         </scene>
-        <!--People View Controller - Title-->
+        <!--People View Controller - People-->
         <scene sceneID="MFx-qP-vbj">
             <objects>
                 <viewController storyboardIdentifier="People" id="0Z8-V0-5D3" customClass="FAPeopleViewController" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="8J8-DM-IXa" id="53C-ho-5as"/>
-                                            <segue destination="9Bs-1y-ksa" kind="push" id="ghB-KD-vfl"/>
+                                            <segue destination="9Bs-1y-ksa" kind="push" identifier="EditPerson" id="ghB-KD-vfl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -81,7 +81,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="ZiP-9X-ZhE">
+                    <navigationItem key="navigationItem" title="People" id="ZiP-9X-ZhE">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="3zh-gu-vxy">
                             <connections>
                                 <action selector="donePressed:" destination="0Z8-V0-5D3" id="Rlw-EY-QCT"/>
@@ -161,6 +161,20 @@
             </objects>
             <point key="canvasLocation" x="1972" y="-262"/>
         </scene>
+        <!--Add Photos View Controller-->
+        <scene sceneID="vT7-4D-yuA">
+            <objects>
+                <viewController storyboardIdentifier="AddPhotos" id="8aI-SK-MRA" customClass="FAAddPhotosViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IlV-Bo-TuG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hXk-gk-7fM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2365" y="46"/>
+        </scene>
         <!--Edit Person View Controller-->
         <scene sceneID="Zip-XJ-tb9">
             <objects>
@@ -174,6 +188,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9Bs-1y-ksa" id="03w-KR-oW4"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -181,6 +198,9 @@
                     <navigationItem key="navigationItem" id="WoN-ph-BpB">
                         <barButtonItem key="backBarButtonItem" title="Back" id="nMQ-p4-2Dx"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameTextField" destination="20y-gZ-jbw" id="d1v-aq-H0r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CmD-Md-H2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

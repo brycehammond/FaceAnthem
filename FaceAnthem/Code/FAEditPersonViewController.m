@@ -7,8 +7,10 @@
 //
 
 #import "FAEditPersonViewController.h"
+#import "FAPerson.h"
 
 @interface FAEditPersonViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @end
 
@@ -17,13 +19,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.nameTextField.text = self.person.name;
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.person.name = self.nameTextField.text;
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(textField == self.nameTextField)
+    {
+        NSString *inputText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        self.navigationItem.hidesBackButton = (inputText.length <= 0); //Only enable back button if we have text in the name field
+    }
+    return YES;
 }
 
 

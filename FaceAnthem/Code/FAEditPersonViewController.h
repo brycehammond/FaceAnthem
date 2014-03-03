@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FAEditPersonViewController : UIViewController
+@class FAPerson;
+
+@interface FAEditPersonViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic, strong) FAPerson *person;
 
 @end

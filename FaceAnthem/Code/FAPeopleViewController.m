@@ -9,6 +9,7 @@
 #import "FAPeopleViewController.h"
 #import "FAPerson.h"
 #import "FAPersonCell.h"
+#import "FAEditPersonViewController.h"
 
 @interface FAPeopleViewController ()
 
@@ -78,6 +79,13 @@
     {
         FAAddPersonViewController *addPersonController = segue.destinationViewController;
         addPersonController.delegate = self;
+    }
+    else if([segue.identifier isEqualToString:@"EditPerson"])
+    {
+        FAEditPersonViewController *editPersonController = segue.destinationViewController;
+        NSIndexPath *selectedPath = self.tableView.indexPathForSelectedRow;
+        editPersonController.person = self.people[selectedPath.row];
+        [self.tableView deselectRowAtIndexPath:selectedPath animated:YES];
     }
 }
 

@@ -44,6 +44,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    self.faceFinder.delegate = nil;
     self.faceFinder = nil; //stop the face finder if offscreen
 }
 
