@@ -27,16 +27,24 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    self.faceFinder = [[FAFaceFinder alloc] initWithPreviewView:self.previewView];
-    self.faceFinder.delegate = self;
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     self.tappedFaceIndex = NSNotFound;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.faceFinder = [[FAFaceFinder alloc] initWithPreviewView:self.previewView];
+    self.faceFinder.delegate = self;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.faceFinder = nil; //stop the face finder if offscreen
 }
 
 
@@ -53,61 +61,15 @@
 {
     self.faces = faces;
     self.faceRects = rects;
+    /*
     [self.faceFinder captureImageWithCompletion:^(UIImage *image) {
         self.currentCaptureImage = image;
     }];
-}
-
-#pragma mark -
-#pragma mark FAFaceAssignmentViewControllerDelegate
-
-- (void)didDismissFaceAssignmentController:(FAFaceAssignmentViewController *)controller
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
+     */
 }
 
 #pragma mark -
 #pragma mark Tap Handling
-- (void)previewTapped:(UITapGestureRecognizer *)gesture
-{
-    CGPoint tapPoint = [gesture locationInView:self.previewView];
-    //see if the tapPoint was on a face
-    self.tappedFaceIndex = NSNotFound;
-    for(NSUInteger faceIndex = 0; faceIndex < self.faceRects.count; ++faceIndex)
-    {
-        if(CGRectContainsPoint([self.faceRects[faceIndex] CGRectValue], tapPoint))
-        {
-            //face rect contains tap point
-            self.tappedFaceIndex = faceIndex;
-            break;
-        }
-    }
-    
-    if(NSNotFound != self.tappedFaceIndex)
-    {
-        [self presentFaceAssignment];
-    }
-}
-
-- (void)presentFaceAssignment
-{
-    FAFaceAssignmentViewController *assignmentController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"FaceAssignment"];
-    
-    assignmentController.delegate = self;
-    assignmentController.previewImage = [self currentTappedFace];
-    [self presentViewController:assignmentController animated:YES completion:nil];
-    
-    
-}
-
-- (UIImage *)currentTappedFace
-{
-    
-    if(NSNotFound == self.tappedFaceIndex)
-        return nil;
-    
-    return [self faceAtIndex:self.tappedFaceIndex];
-}
 
 - (UIImage *)faceAtIndex:(NSUInteger)index
 {
@@ -129,6 +91,24 @@
 	CGImageRelease(croppedImageRef);
     return cropped;
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"People"])
+    {
+        UINavigationController *navController = segue.destinationViewController;
+        FAPeopleViewController *peopleController = navController.viewControllers.firstObject;
+        peopleController.delegate = self;
+    }
+}
+
+#pragma mark -
+#pragma mark FAPeopleViewControllerDelegate
+
+- (void)didDismissPeopleViewController:(FAPeopleViewController *)peopleController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -399,6 +399,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
 	// get the image
+    
 	CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 	CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
 	CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer
@@ -424,12 +425,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	CMFormatDescriptionRef fdesc = CMSampleBufferGetFormatDescription(sampleBuffer);
 	CGRect cleanAperture = CMVideoFormatDescriptionGetCleanAperture(fdesc, false /*originIsTopLeft == false*/);
 	
+    
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
 		NSArray *faceRects = [self drawFaces:features
             forVideoBox:cleanAperture
             orientation:curDeviceOrientation];
         [self.delegate faceFinder:self didFindFaces:features inRects:faceRects];
 	});
+    
 }
 
 @end

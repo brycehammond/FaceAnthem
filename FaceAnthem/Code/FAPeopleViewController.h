@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FAAddPersonViewController.h"
 
 @class FAPeopleViewController;
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface FAPeopleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FAPeopleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, FAAddPersonViewControllerDelegate>
 
 @property (nonatomic, weak) id<FAPeopleViewControllerDelegate> delegate;
 

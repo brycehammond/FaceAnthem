@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FAEditPersonViewController : UITableViewController
+@interface FAEditPersonViewController : UIViewController
 
 @end

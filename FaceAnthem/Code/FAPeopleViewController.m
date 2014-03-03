@@ -38,6 +38,7 @@
 {
     [super viewWillAppear:animated];
     self.people = [FAPerson MR_findAllSortedBy:@"name" ascending:YES];
+    [self.tableView reloadData];
     
 }
 
@@ -50,11 +51,6 @@
 - (IBAction)donePressed:(id)sender
 {
     [self.delegate didDismissPeopleViewController:self];
-}
-
-- (IBAction)addPressed:(id)sender
-{
-    
 }
 
 #pragma mark -
@@ -71,6 +67,31 @@
     FAPersonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonCell"];
     [cell setPerson:person];
     return cell;
+}
+
+#pragma mark -
+#pragma mark Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"AddPerson"])
+    {
+        FAAddPersonViewController *addPersonController = segue.destinationViewController;
+        addPersonController.delegate = self;
+    }
+}
+
+#pragma mark -
+#pragma mark FAAddPErsonViewControllerDelegate
+
+- (void)didCancelAddPersonViewController:(FAAddPersonViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addPersonViewController:(FAAddPersonViewController *)controller didAddPerson:(FAPerson *)person
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
