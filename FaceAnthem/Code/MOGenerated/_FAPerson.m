@@ -89,6 +89,15 @@ const struct FAPersonFetchedProperties FAPersonFetchedProperties = {
 @dynamic pictures;
 
 	
+- (NSMutableSet*)picturesSet {
+	[self willAccessValueForKey:@"pictures"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"pictures"];
+  
+	[self didAccessValueForKey:@"pictures"];
+	return result;
+}
+	
 
 
 

@@ -10,6 +10,8 @@
 
 @implementation FAPerson
 
+@synthesize recognitionConfidence = _recognitionConfidence;
+
 // Custom logic goes here.
 
 @end

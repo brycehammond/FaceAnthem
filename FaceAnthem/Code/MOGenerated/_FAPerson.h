@@ -58,9 +58,9 @@ extern const struct FAPersonFetchedProperties {
 
 
 
-@property (nonatomic, strong) FAPicture *pictures;
+@property (nonatomic, strong) NSSet *pictures;
 
-//- (BOOL)validatePictures:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)picturesSet;
 
 
 
@@ -69,6 +69,11 @@ extern const struct FAPersonFetchedProperties {
 @end
 
 @interface _FAPerson (CoreDataGeneratedAccessors)
+
+- (void)addPictures:(NSSet*)value_;
+- (void)removePictures:(NSSet*)value_;
+- (void)addPicturesObject:(FAPicture*)value_;
+- (void)removePicturesObject:(FAPicture*)value_;
 
 @end
 
@@ -91,8 +96,8 @@ extern const struct FAPersonFetchedProperties {
 
 
 
-- (FAPicture*)primitivePictures;
-- (void)setPrimitivePictures:(FAPicture*)value;
+- (NSMutableSet*)primitivePictures;
+- (void)setPrimitivePictures:(NSMutableSet*)value;
 
 
 @end

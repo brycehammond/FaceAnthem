@@ -6,6 +6,7 @@
 
 extern const struct FAPictureAttributes {
 	__unsafe_unretained NSString *imageData;
+	__unsafe_unretained NSString *standardizedImageData;
 } FAPictureAttributes;
 
 extern const struct FAPictureRelationships {
@@ -16,6 +17,7 @@ extern const struct FAPictureFetchedProperties {
 } FAPictureFetchedProperties;
 
 @class FAPerson;
+
 
 
 
@@ -42,6 +44,16 @@ extern const struct FAPictureFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSData* standardizedImageData;
+
+
+
+//- (BOOL)validateStandardizedImageData:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) FAPerson *person;
 
 //- (BOOL)validatePerson:(id*)value_ error:(NSError**)error_;
@@ -61,6 +73,12 @@ extern const struct FAPictureFetchedProperties {
 
 - (NSData*)primitiveImageData;
 - (void)setPrimitiveImageData:(NSData*)value;
+
+
+
+
+- (NSData*)primitiveStandardizedImageData;
+- (void)setPrimitiveStandardizedImageData:(NSData*)value;
 
 
 

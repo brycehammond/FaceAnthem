@@ -5,6 +5,7 @@
 
 const struct FAPictureAttributes FAPictureAttributes = {
 	.imageData = @"imageData",
+	.standardizedImageData = @"standardizedImageData",
 };
 
 const struct FAPictureRelationships FAPictureRelationships = {
@@ -48,6 +49,13 @@ const struct FAPictureFetchedProperties FAPictureFetchedProperties = {
 
 
 @dynamic imageData;
+
+
+
+
+
+
+@dynamic standardizedImageData;
 
 
 
