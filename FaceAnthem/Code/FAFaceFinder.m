@@ -426,12 +426,48 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	CMFormatDescriptionRef fdesc = CMSampleBufferGetFormatDescription(sampleBuffer);
 	CGRect cleanAperture = CMVideoFormatDescriptionGetCleanAperture(fdesc, false /*originIsTopLeft == false*/);
 	
+    __weak FAFaceFinder *weakFinder = self;
     
 	dispatch_async(dispatch_get_main_queue(), ^(void) {
 		NSArray *faceRects = [self drawFaces:features
             forVideoBox:cleanAperture
             orientation:curDeviceOrientation];
-        [self.delegate faceFinder:self didFindFaces:features inRects:faceRects forImage:screenImage];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            //get the face images and supply them to the delegate
+            
+            NSMutableArray *faceImages = [[NSMutableArray alloc] initWithCapacity:faceRects.count];
+            
+            CGFloat scale = screenImage.scale;
+            for(NSValue *faceValue in faceRects)
+            {
+                CGRect faceRect = CGRectOffset(faceValue.CGRectValue, 0, -weakFinder.previewRect.origin.y);
+                faceRect = CGRectMake(faceRect.origin.x * scale, faceRect.origin.y * scale, faceRect.size.width * scale, faceRect.size.height * scale);
+                
+                //Flip the co-ordinates of the rect if we are mirrored
+                if(screenImage.imageOrientation == UIImageOrientationUpMirrored)
+                {
+                    faceRect = CGRectMake((screenImage.size.width * scale) - faceRect.origin.x - faceRect.size.width, faceRect.origin.y, faceRect.size.width, faceRect.size.height);
+                }
+                
+                // Create the cropped image
+                CGImageRef croppedImageRef = CGImageCreateWithImageInRect(screenImage.CGImage, faceRect);
+                UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef scale:scale orientation:screenImage.imageOrientation ];
+                
+                /// Cleanup
+                CGImageRelease(croppedImageRef);
+                [faceImages addObject:cropped];
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [self.delegate faceFinder:self didFindFaceImages:faceImages inRects:faceRects forImage:screenImage];
+            });
+            
+        });
+        
+        
 	});
     
 }

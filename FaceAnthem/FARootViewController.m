@@ -56,7 +56,7 @@
 #pragma mark -
 #pragma mark FAFaceFinderDelegate
 
-- (void)faceFinder:(FAFaceFinder *)finder didFindFaces:(NSArray *)faces inRects:(NSArray *)rects forImage:(UIImage *)image
+- (void)faceFinder:(FAFaceFinder *)finder didFindFaceImages:(NSArray *)faces inRects:(NSArray *)rects forImage:(UIImage *)image
 {
     self.faces = faces;
     self.faceRects = rects;
