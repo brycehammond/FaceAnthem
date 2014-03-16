@@ -404,6 +404,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 	CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
 	CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer
                                                       options:(__bridge NSDictionary *)attachments];
+    UIImage *screenImage = [[UIImage alloc] initWithCIImage:ciImage];
     
 	if (attachments) {
 		CFRelease(attachments);
@@ -430,7 +431,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 		NSArray *faceRects = [self drawFaces:features
             forVideoBox:cleanAperture
             orientation:curDeviceOrientation];
-        [self.delegate faceFinder:self didFindFaces:features inRects:faceRects];
+        [self.delegate faceFinder:self didFindFaces:features inRects:faceRects forImage:screenImage];
 	});
     
 }

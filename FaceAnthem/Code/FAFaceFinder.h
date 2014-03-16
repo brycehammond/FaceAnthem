@@ -13,7 +13,7 @@
 
 @protocol FAFaceFinderDelegate <NSObject>
 
-- (void)faceFinder:(FAFaceFinder *)finder didFindFaces:(NSArray *)faces inRects:(NSArray *)rects;
+- (void)faceFinder:(FAFaceFinder *)finder didFindFaces:(NSArray *)faces inRects:(NSArray *)rects forImage:(UIImage *)image;
 
 @end
 

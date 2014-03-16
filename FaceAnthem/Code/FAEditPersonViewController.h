@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Imulus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FAPersonBaseViewController.h"
 
 @class FAPerson;
 
-@interface FAEditPersonViewController : UIViewController <UITextFieldDelegate>
+@interface FAEditPersonViewController : FAPersonBaseViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) FAPerson *person;
 

@@ -10,6 +10,15 @@
 
 @interface FAAddPhotosViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *previewView;
+
+@property (nonatomic, strong) NSMutableArray *photos;
+
+@property (nonatomic, strong) NSArray *faces;
+@property (nonatomic, strong) NSArray *faceRects;
+@property (nonatomic, strong) UIImage *currentCaptureImage;
+@property (nonatomic, strong) FAFaceFinder *faceFinder;
+
 @end
 
 @implementation FAAddPhotosViewController
@@ -18,9 +27,20 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setupController];
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setupController];
+}
+
+- (void)setupController
+{
+    self.photos = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidLoad
@@ -29,10 +49,39 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.faceFinder = [[FAFaceFinder alloc] initWithPreviewView:self.previewView];
+    self.faceFinder.delegate = self;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.faceFinder.delegate = nil;
+    self.faceFinder = nil; //stop the face finder if offscreen
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)done:(id)sender
+{
+    [self.delegate didDismissAddPhotosViewController:self withPhotos:self.photos];
+}
+
+#pragma mark -
+#pragma mark FAFaceFinderDelegate
+
+- (void)faceFinder:(FAFaceFinder *)finder didFindFaces:(NSArray *)faces inRects:(NSArray *)rects forImage:(UIImage *)image
+{
+    self.faces = faces;
+    self.faceRects = rects;
+    self.currentCaptureImage = image;
 }
 
 @end

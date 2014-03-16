@@ -50,10 +50,10 @@
     pic.standardizedImageData = serialized;
     [person addPicturesObject:pic];
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
-    [self trainModel];
+    [self retrainModel];
 }
 
-- (void)trainModel
+- (void)retrainModel
 {
     std::vector<cv::Mat> images;
     std::vector<int> labels;
@@ -63,8 +63,8 @@
     for(FAPicture *picture in pictures)
     {
         cv::Mat faceData = [[self class] dataToMat:picture.standardizedImageData
-                                           width:[NSNumber numberWithInt:100]
-                                          height:[NSNumber numberWithInt:100]];
+                                           width:@100
+                                          height:@100];
         
         images.push_back(faceData);
         labels.push_back(picture.person.recognitionIdentifierValue);
@@ -120,7 +120,7 @@
 
 + (cv::Mat)dataToMat:(NSData *)data width:(NSNumber *)width height:(NSNumber *)height
 {
-    cv::Mat output = cv::Mat([width integerValue], [height integerValue], CV_8UC1);
+    cv::Mat output = cv::Mat([width intValue], [height intValue], CV_8UC1);
     output.data = (unsigned char*)data.bytes;
     
     return output;

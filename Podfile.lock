@@ -1,5 +1,7 @@
 PODS:
-  - MagicalRecord (2.2)
+  - MagicalRecord (2.2):
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.2)
   - OpenCV (2.4.8)
   - UIView-IMUUtilities (0.0.1)
 
@@ -13,7 +15,7 @@ EXTERNAL SOURCES:
     :podspec: podspecs/UIView-IMUUtilities.podspec
 
 SPEC CHECKSUMS:
-  MagicalRecord: b1fc46c99a9749fe7fe7e6f43a89b62ef5201933
+  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   OpenCV: ea63ea6f551e4faf51f24712fcfd1e3d3345e7d3
   UIView-IMUUtilities: 27fb272f24adb20ec780386f979ef7394a2537fb
 

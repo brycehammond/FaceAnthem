@@ -14,7 +14,6 @@
 @property (nonatomic, strong) NSArray *faces;
 @property (nonatomic, strong) NSArray *faceRects;
 @property (nonatomic, strong) FAFaceFinder *faceFinder;
-@property (nonatomic, assign) NSUInteger tappedFaceIndex;
 @property (nonatomic, strong) UIImage *currentCaptureImage;
 
 @end
@@ -32,7 +31,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.tappedFaceIndex = NSNotFound;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,15 +56,11 @@
 #pragma mark -
 #pragma mark FAFaceFinderDelegate
 
-- (void)faceFinder:(FAFaceFinder *)finder didFindFaces:(NSArray *)faces inRects:(NSArray *)rects
+- (void)faceFinder:(FAFaceFinder *)finder didFindFaces:(NSArray *)faces inRects:(NSArray *)rects forImage:(UIImage *)image
 {
     self.faces = faces;
     self.faceRects = rects;
-    /*
-    [self.faceFinder captureImageWithCompletion:^(UIImage *image) {
-        self.currentCaptureImage = image;
-    }];
-     */
+    self.currentCaptureImage = image;
 }
 
 #pragma mark -

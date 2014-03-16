@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FAFaceFinder.h"
 
-@interface FAAddPhotosViewController : UIViewController
+@class FAAddPhotosViewController;
+
+@protocol FAAddPhotosViewControllerDelegate <NSObject>
+
+- (void)didDismissAddPhotosViewController:(FAAddPhotosViewController *)controller withPhotos:(NSArray *)photos;
+
+@end
+
+@interface FAAddPhotosViewController : UIViewController <FAFaceFinderDelegate>
+
+@property (nonatomic, weak) id<FAAddPhotosViewControllerDelegate> delegate;
 
 @end

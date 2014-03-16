@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Imulus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FAPersonBaseViewController.h"
 
 @class FAAddPersonViewController;
 @class FAPerson;
@@ -18,7 +18,7 @@
 
 @end
 
-@interface FAAddPersonViewController : UIViewController
+@interface FAAddPersonViewController : FAPersonBaseViewController
 
 @property (nonatomic, weak) id<FAAddPersonViewControllerDelegate> delegate;
 

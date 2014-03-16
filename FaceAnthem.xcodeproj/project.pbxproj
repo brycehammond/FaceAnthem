@@ -46,6 +46,7 @@
 		0292914018C15597009DD431 /* FAEditPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292913F18C15597009DD431 /* FAEditPersonViewController.m */; };
 		0292914418C25EF8009DD431 /* FAAddPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292914318C25EF8009DD431 /* FAAddPersonViewController.m */; };
 		0292914718C451BD009DD431 /* FAAddPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292914618C451BD009DD431 /* FAAddPhotosViewController.m */; };
+		02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */; };
 		02EFA48418C1350D00C42C4C /* FAPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48318C1350D00C42C4C /* FAPeopleViewController.m */; };
 		02EFA48718C141C900C42C4C /* _FAPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48618C141C900C42C4C /* _FAPicture.m */; };
 		02EFA48A18C141D600C42C4C /* FAPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48918C141D600C42C4C /* FAPicture.m */; };
@@ -104,6 +105,8 @@
 		0292914318C25EF8009DD431 /* FAAddPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAAddPersonViewController.m; path = Code/FAAddPersonViewController.m; sourceTree = "<group>"; };
 		0292914518C451BD009DD431 /* FAAddPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAAddPhotosViewController.h; path = Code/FAAddPhotosViewController.h; sourceTree = "<group>"; };
 		0292914618C451BD009DD431 /* FAAddPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAAddPhotosViewController.m; path = Code/FAAddPhotosViewController.m; sourceTree = "<group>"; };
+		02AFFDBD18D4E2E6007A46BF /* FAPersonBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPersonBaseViewController.h; path = Code/FAPersonBaseViewController.h; sourceTree = "<group>"; };
+		02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPersonBaseViewController.m; path = Code/FAPersonBaseViewController.m; sourceTree = "<group>"; };
 		02EFA48218C1350D00C42C4C /* FAPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPeopleViewController.h; path = Code/FAPeopleViewController.h; sourceTree = "<group>"; };
 		02EFA48318C1350D00C42C4C /* FAPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPeopleViewController.m; path = Code/FAPeopleViewController.m; sourceTree = "<group>"; };
 		02EFA48518C141C900C42C4C /* _FAPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FAPicture.h; path = Code/MOGenerated/_FAPicture.h; sourceTree = "<group>"; };
@@ -273,6 +276,8 @@
 				0292914318C25EF8009DD431 /* FAAddPersonViewController.m */,
 				0292914518C451BD009DD431 /* FAAddPhotosViewController.h */,
 				0292914618C451BD009DD431 /* FAAddPhotosViewController.m */,
+				02AFFDBD18D4E2E6007A46BF /* FAPersonBaseViewController.h */,
+				02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -369,7 +374,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = FA;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Imulus;
 				TargetAttributes = {
 					022C826618972E8900CA4953 = {
@@ -486,6 +491,7 @@
 				02EFA48A18C141D600C42C4C /* FAPicture.m in Sources */,
 				022C826018972E8900CA4953 /* FARootViewController.m in Sources */,
 				022C829218976A0100CA4953 /* FAFaceFinder.m in Sources */,
+				02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +553,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -587,7 +592,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -648,7 +652,6 @@
 		022C827C18972E8900CA4953 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FaceAnthem.app/FaceAnthem";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -671,7 +674,6 @@
 		022C827D18972E8900CA4953 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FaceAnthem.app/FaceAnthem";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
