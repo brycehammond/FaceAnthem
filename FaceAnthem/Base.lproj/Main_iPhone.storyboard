@@ -193,6 +193,16 @@
                                             <action selector="done:" destination="8aI-SK-MRA" eventType="touchUpInside" id="BAM-CC-Kqr"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XP4-I8-nBU">
+                                        <rect key="frame" x="118" y="518" width="84" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Take Picture">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="takePicture:" destination="8aI-SK-MRA" eventType="touchUpInside" id="ndv-uE-8aG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>

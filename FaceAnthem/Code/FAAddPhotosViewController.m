@@ -74,6 +74,12 @@
     [self.delegate didDismissAddPhotosViewController:self withPhotos:self.photos];
 }
 
+- (IBAction)takePicture:(id)sender
+{
+    //get the face from the current capture image add add it to our list
+    
+}
+
 #pragma mark -
 #pragma mark FAFaceFinderDelegate
 
