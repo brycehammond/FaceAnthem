@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FAAddPhotosViewController.h"
 
-@interface FAPersonBaseViewController : UIViewController
+@class FAPerson;
 
+@interface FAPersonBaseViewController : UIViewController <FAAddPhotosViewControllerDelegate>
+
+
+@property (nonatomic, strong) FAPerson *person;
 @property (nonatomic, strong) NSMutableArray *personPictures;
 
 @end

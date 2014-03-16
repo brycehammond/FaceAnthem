@@ -11,6 +11,7 @@
 @interface FAAddPhotosViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *previewView;
+@property (weak, nonatomic) IBOutlet UIImageView *lastImageView;
 
 @property (nonatomic, strong) NSMutableArray *photos;
 
@@ -77,6 +78,13 @@
 - (IBAction)takePicture:(id)sender
 {
     //get the face from the current capture image add add it to our list
+    UIImage *faceImage = self.faces.firstObject;
+    if(nil != faceImage)
+    {
+        self.lastImageView.image = faceImage;
+        [self.photos addObject:faceImage];
+    }
+    
     
 }
 
@@ -88,6 +96,7 @@
     self.faces = faces;
     self.faceRects = rects;
     self.currentCaptureImage = image;
+    
 }
 
 @end
