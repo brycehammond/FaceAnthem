@@ -13,7 +13,6 @@
 
 @property (nonatomic) BOOL isUsingFrontFacingCamera;
 @property (nonatomic, strong) AVCaptureVideoDataOutput *videoDataOutput;
-@property (nonatomic, strong) AVCaptureStillImageOutput *imageDataOutput;
 @property (nonatomic) dispatch_queue_t videoDataOutputQueue;
 
 @property (nonatomic, strong) CIDetector *faceDetector;
@@ -41,43 +40,6 @@
 - (void)dealloc
 {
     [self teardownAVCapture];
-}
-
-- (void)captureImageWithCompletion:(void (^)(UIImage *))completion
-{
-    AVCaptureConnection *videoConnection = nil;
-	for (AVCaptureConnection *connection in [self.imageDataOutput connections]) {
-		for (AVCaptureInputPort *port in [connection inputPorts]) {
-			if ([[port mediaType] isEqual:AVMediaTypeVideo]) {
-				videoConnection = connection;
-				break;
-			}
-		}
-		if (videoConnection) {
-            break;
-        }
-	}
-    
-    [self.imageDataOutput captureStillImageAsynchronouslyFromConnection:videoConnection
-                                                         completionHandler:^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
-                                     
-                                                             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-                                                             UIImage *image = [[UIImage alloc] initWithData:imageData];
-                                                             
-                                                             CGSize newSize = CGSizeMake(320, ceil(320 / image.size.width * image.size.height));
-                                                             UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-                                                             [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-                                                             UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-                                                            
-                                                             
-                                                             UIGraphicsEndImageContext();
-                                                             
-                                                             newImage = [UIImage imageWithCGImage:newImage.CGImage
-                                                                                            scale:newImage.scale orientation: UIImageOrientationUpMirrored];
-                                                             
-                                                              if(completion)
-                                                                  completion(newImage);
-                                                         }];
 }
 
 - (void)setupAVCapture
@@ -125,8 +87,7 @@
         // Make a video data output
         self.videoDataOutput = [[AVCaptureVideoDataOutput alloc] init];
         
-        // we want BGRA, both CoreGraphics and OpenGL work well with 'BGRA'
-        NSDictionary *rgbOutputSettings = @{(id)kCVPixelBufferPixelFormatTypeKey: @(kCMPixelFormat_32BGRA)};
+        NSDictionary *rgbOutputSettings = @{(id)kCVPixelBufferPixelFormatTypeKey: @(kCVPixelFormatType_32BGRA)};
         [self.videoDataOutput setVideoSettings:rgbOutputSettings];
         [self.videoDataOutput setAlwaysDiscardsLateVideoFrames:YES]; // discard if the data output queue is blocked
         
@@ -142,13 +103,6 @@
         
         // get the output for doing face detection.
         [[self.videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:YES];
-        
-        self.imageDataOutput = [[AVCaptureStillImageOutput alloc] init];
-        self.imageDataOutput.outputSettings = @{ AVVideoCodecKey : AVVideoCodecJPEG};
-        
-        if([session canAddOutput:self.imageDataOutput]) {
-            [session addOutput:self.imageDataOutput];
-        }
         
         self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
         self.previewLayer.backgroundColor = [[UIColor blackColor] CGColor];
@@ -399,19 +353,26 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
 	// get the image
-    
 	CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 	CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
 	CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer
                                                       options:(__bridge NSDictionary *)attachments];
-    UIImage *screenImage = [[UIImage alloc] initWithCIImage:ciImage];
+    
+    CIContext *temporaryContext = [CIContext contextWithOptions:nil];
+    CGImageRef videoImage = [temporaryContext
+                             createCGImage:ciImage
+                             fromRect:CGRectMake(0, 0,
+                                                 CVPixelBufferGetWidth(pixelBuffer),
+                                                 CVPixelBufferGetHeight(pixelBuffer))];
+    
+    UIImage *screenImage = [UIImage imageWithCGImage:videoImage scale:1.0 orientation:UIImageOrientationLeftMirrored];
+    
+    // make sure your device orientation is not locked.
+	UIDeviceOrientation curDeviceOrientation = [[UIDevice currentDevice] orientation];
     
 	if (attachments) {
 		CFRelease(attachments);
     }
-    
-    // make sure your device orientation is not locked.
-	UIDeviceOrientation curDeviceOrientation = [[UIDevice currentDevice] orientation];
     
 	NSDictionary *imageOptions = nil;
     
@@ -439,21 +400,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             
             NSMutableArray *faceImages = [[NSMutableArray alloc] initWithCapacity:faceRects.count];
             
-            CGFloat scale = screenImage.scale;
             for(NSValue *faceValue in faceRects)
             {
                 CGRect faceRect = CGRectOffset(faceValue.CGRectValue, 0, -weakFinder.previewRect.origin.y);
-                faceRect = CGRectMake(faceRect.origin.x * scale, faceRect.origin.y * scale, faceRect.size.width * scale, faceRect.size.height * scale);
-                
-                //Flip the co-ordinates of the rect if we are mirrored
-                if(screenImage.imageOrientation == UIImageOrientationUpMirrored)
-                {
-                    faceRect = CGRectMake((screenImage.size.width * scale) - faceRect.origin.x - faceRect.size.width, faceRect.origin.y, faceRect.size.width, faceRect.size.height);
-                }
+                //faceRect = CGRectMake(faceRect.origin.x * scale, faceRect.origin.y * scale, faceRect.size.width * scale, faceRect.size.height * scale);
                 
                 // Create the cropped image
                 CGImageRef croppedImageRef = CGImageCreateWithImageInRect(screenImage.CGImage, faceRect);
-                UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef scale:scale orientation:screenImage.imageOrientation ];
+                UIImage* cropped = [UIImage imageWithCGImage:croppedImageRef];
                 
                 /// Cleanup
                 CGImageRelease(croppedImageRef);
@@ -470,6 +424,27 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         
 	});
     
+}
+
+- (CGImageRef) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer // Create a CGImageRef from sample buffer data
+{
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferLockBaseAddress(imageBuffer,0);        // Lock the image buffer
+    
+    uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddressOfPlane(imageBuffer, 0);   // Get information of the image
+    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    CGContextRef newContext = CGBitmapContextCreate(baseAddress, width, height, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    CGImageRef newImage = CGBitmapContextCreateImage(newContext);
+    CGContextRelease(newContext);
+    
+    CGColorSpaceRelease(colorSpace);
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
+    return newImage;
 }
 
 @end

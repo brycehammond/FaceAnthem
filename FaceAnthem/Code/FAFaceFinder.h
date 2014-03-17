@@ -21,8 +21,6 @@
 
 - (id)initWithPreviewView:(UIView *)previewView;
 
-- (void)captureImageWithCompletion:(void (^)(UIImage *))completion;
-
 @property (nonatomic, weak) id<FAFaceFinderDelegate> delegate;
 @property (nonatomic, readonly) CGRect previewRect;
 

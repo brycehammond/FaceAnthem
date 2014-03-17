@@ -96,6 +96,7 @@
     self.faces = faces;
     self.faceRects = rects;
     self.currentCaptureImage = image;
+    self.lastImageView.image = self.faces.firstObject;;
     
 }
 
