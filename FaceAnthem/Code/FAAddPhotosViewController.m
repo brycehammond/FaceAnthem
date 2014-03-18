@@ -18,7 +18,6 @@
 @property (nonatomic, strong) NSArray *faces;
 @property (nonatomic, strong) NSArray *faceRects;
 @property (nonatomic, strong) UIImage *currentCaptureImage;
-@property (nonatomic, strong) FAFaceFinder *faceFinder;
 
 @end
 
@@ -53,15 +52,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.faceFinder = [[FAFaceFinder alloc] initWithPreviewView:self.previewView];
-    self.faceFinder.delegate = self;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    self.faceFinder.delegate = nil;
-    self.faceFinder = nil; //stop the face finder if offscreen
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,17 +80,6 @@
         [self.photos addObject:faceImage];
     }
     
-    
-}
-
-#pragma mark -
-#pragma mark FAFaceFinderDelegate
-
-- (void)faceFinder:(FAFaceFinder *)finder didFindFaces:(NSArray *)faces inRects:(NSArray *)rects forImage:(UIImage *)image
-{
-    self.faces = faces;
-    self.faceRects = rects;
-    self.currentCaptureImage = image;
     
 }
 

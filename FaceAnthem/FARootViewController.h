@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FAFaceFinder.h"
 #import "FAPeopleViewController.h"
 
 @interface FARootViewController : UIViewController
     <
     UIGestureRecognizerDelegate,
-    FAFaceFinderDelegate,
     FAPeopleViewControllerDelegate
     >
 

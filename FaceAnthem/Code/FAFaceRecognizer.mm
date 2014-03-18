@@ -7,10 +7,9 @@
 //
 
 #import "FAFaceRecognizer.h"
-#import <opencv2/highgui/cap_ios.h>
 #import "FAPicture.h"
 #import "FAPerson.h"
-
+#import "FAOpenCVData.h"
 
 @interface FAFaceRecognizer ()
 {
@@ -24,36 +23,62 @@
 - (id)init
 {
     self = [super init];
-    if(self)
-    {
-        _recognizerModel = cv::createFisherFaceRecognizer();
+    if (self) {
     }
-    return self;
     
+    return self;
 }
 
-- (void)trainFaceImage:(UIImage *)faceImage forPerson:(FAPerson *)person
+- (id)initWithEigenFaceRecognizer
 {
-    cv::Mat faceData = [[self class] cvMatFromUIImage:faceImage];
+    self = [self init];
+    _recognizerModel = cv::createEigenFaceRecognizer();
     
+    return self;
+}
+
+- (id)initWithFisherFaceRecognizer
+{
+    self = [self init];
+    _recognizerModel = cv::createFisherFaceRecognizer();
+    
+    return self;
+}
+
+- (id)initWithLBPHFaceRecognizer
+{
+    self = [self init];
+    _recognizerModel = cv::createLBPHFaceRecognizer();
+    
+    return self;
+}
+
+- (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
+{
     // Pull the grayscale face ROI out of the captured image
-    cv::Mat deColored;
-    cv::cvtColor(faceData, deColored, CV_RGB2GRAY);
+    cv::Mat onlyTheFace;
+    cv::cvtColor(image(face), onlyTheFace, CV_RGB2GRAY);
     
     // Standardize the face to 100x100 pixels
-    cv::resize(deColored, deColored, cv::Size(100, 100), 0, 0);
+    cv::resize(onlyTheFace, onlyTheFace, cv::Size(100, 100), 0, 0);
     
-    NSData *serialized = [[self class] serializeCvMat:deColored];
+    return onlyTheFace;
+}
+
+- (void)trainFace:(cv::Rect)face forPerson:(FAPerson *)person fromImage:(cv::Mat&)image;
+{
+    cv::Mat faceData = [self pullStandardizedFace:face fromImage:image];
+    NSData *serialized = [FAOpenCVData serializeCvMat:faceData];
     
     FAPicture *pic = [FAPicture MR_createEntity];
-    pic.imageData = UIImagePNGRepresentation(faceImage);
+    //pic.imageData = UIImagePNGRepresentation(faceImage);
     pic.standardizedImageData = serialized;
     [person addPicturesObject:pic];
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
-    [self retrainModel];
+    [self trainModel];
 }
 
-- (void)retrainModel
+- (void)trainModel
 {
     std::vector<cv::Mat> images;
     std::vector<int> labels;
@@ -75,55 +100,22 @@
     }
 }
 
-- (FAPerson *)recognizedPersonForImage:(UIImage *)faceImage
+- (FAPerson *)recognizedFace:(cv::Rect)face inImage:(cv::Mat&)image
 {
-    return nil;
-}
-
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image
-{
-    return [[self class] cvMatFromUIImage:image usingColorSpace:CV_RGB2GRAY];
-}
-
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace
-{
-    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
-    CGFloat cols = image.size.width;
-    CGFloat rows = image.size.height;
+    int predictedLabel = -1;
+    double confidence = 0.0;
+    _recognizerModel->predict([self pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
     
-    cv::Mat cvMat(rows, cols, CV_8UC4);
-    
-    CGContextRef contextRef = CGBitmapContextCreate(
-                                                    cvMat.data,                 // Pointer to  data
-                                                    cols,                       // Width of bitmap
-                                                    rows,                       // Height of bitmap
-                                                    8,                          // Bits per component
-                                                    cvMat.step[0],              // Bytes per row
-                                                    colorSpace,                 // Colorspace
-                                                    kCGImageAlphaNoneSkipLast|kCGBitmapByteOrderDefault // Bitmap info flags
-                                                    );
-    
-    CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image.CGImage);
-    CGContextRelease(contextRef);
-    CGColorSpaceRelease(colorSpace);
-    
-    cv::Mat finalOutput;
-    cvtColor(cvMat, finalOutput, outputSpace);
-    
-    return finalOutput;
-}
-
-+ (NSData *)serializeCvMat:(cv::Mat&)cvMat
-{
-    return [[NSData alloc] initWithBytes:cvMat.data length:cvMat.elemSize() * cvMat.total()];
-}
-
-+ (cv::Mat)dataToMat:(NSData *)data width:(NSNumber *)width height:(NSNumber *)height
-{
-    cv::Mat output = cv::Mat([width intValue], [height intValue], CV_8UC1);
-    output.data = (unsigned char*)data.bytes;
-    
-    return output;
+    if(-1 != predictedLabel)
+    {
+        FAPerson *recognizedPerson = [FAPerson MR_findFirstByAttribute:@"recognitionIdentifier" withValue:@(predictedLabel)];
+        recognizedPerson.recognitionConfidence = confidence;
+        return recognizedPerson;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 @end
