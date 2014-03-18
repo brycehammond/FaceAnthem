@@ -29,7 +29,7 @@
 		022C825718972E8900CA4953 /* FAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C825618972E8900CA4953 /* FAAppDelegate.m */; };
 		022C825A18972E8900CA4953 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022C825818972E8900CA4953 /* Main_iPhone.storyboard */; };
 		022C825D18972E8900CA4953 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022C825B18972E8900CA4953 /* Main_iPad.storyboard */; };
-		022C826018972E8900CA4953 /* FARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C825F18972E8900CA4953 /* FARootViewController.m */; };
+		022C826018972E8900CA4953 /* FARootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 022C825F18972E8900CA4953 /* FARootViewController.mm */; };
 		022C826218972E8900CA4953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 022C826118972E8900CA4953 /* Images.xcassets */; };
 		022C826918972E8900CA4953 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C826818972E8900CA4953 /* XCTest.framework */; };
 		022C826A18972E8900CA4953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824618972E8900CA4953 /* Foundation.framework */; };
@@ -84,7 +84,7 @@
 		022C825918972E8900CA4953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		022C825C18972E8900CA4953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		022C825E18972E8900CA4953 /* FARootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FARootViewController.h; sourceTree = "<group>"; };
-		022C825F18972E8900CA4953 /* FARootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FARootViewController.m; sourceTree = "<group>"; };
+		022C825F18972E8900CA4953 /* FARootViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FARootViewController.mm; sourceTree = "<group>"; };
 		022C826118972E8900CA4953 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		022C826718972E8900CA4953 /* FaceAnthemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceAnthemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		022C826818972E8900CA4953 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -108,7 +108,7 @@
 		02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPersonBaseViewController.m; path = Code/FAPersonBaseViewController.m; sourceTree = "<group>"; };
 		02AFFDC018D6A922007A46BF /* FAFaceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAFaceDetector.h; path = Code/FAFaceDetector.h; sourceTree = "<group>"; };
 		02AFFDC118D6A922007A46BF /* FAFaceDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAFaceDetector.mm; path = Code/FAFaceDetector.mm; sourceTree = "<group>"; };
-		02AFFDC418D7F675007A46BF /* FAOpenCVData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAOpenCVData.h; path = Code/FAOpenCVData.h; sourceTree = "<group>"; };
+		02AFFDC418D7F675007A46BF /* FAOpenCVData.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = FAOpenCVData.h; path = Code/FAOpenCVData.h; sourceTree = "<group>"; };
 		02AFFDC518D7F675007A46BF /* FAOpenCVData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAOpenCVData.mm; path = Code/FAOpenCVData.mm; sourceTree = "<group>"; };
 		02EFA48218C1350D00C42C4C /* FAPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPeopleViewController.h; path = Code/FAPeopleViewController.h; sourceTree = "<group>"; };
 		02EFA48318C1350D00C42C4C /* FAPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPeopleViewController.m; path = Code/FAPeopleViewController.m; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		02F423C5189D7FD000042E9D /* FAPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPerson.m; path = Code/FAPerson.m; sourceTree = "<group>"; };
 		02F423C8189D7FEA00042E9D /* _FAPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FAPerson.h; path = Code/MOGenerated/_FAPerson.h; sourceTree = "<group>"; };
 		02F423C9189D7FEA00042E9D /* _FAPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FAPerson.m; path = Code/MOGenerated/_FAPerson.m; sourceTree = "<group>"; };
-		02F423D0189D9D3B00042E9D /* FAFaceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAFaceRecognizer.h; path = Code/FAFaceRecognizer.h; sourceTree = "<group>"; };
+		02F423D0189D9D3B00042E9D /* FAFaceRecognizer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = FAFaceRecognizer.h; path = Code/FAFaceRecognizer.h; sourceTree = "<group>"; };
 		02F423D1189D9D3B00042E9D /* FAFaceRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAFaceRecognizer.mm; path = Code/FAFaceRecognizer.mm; sourceTree = "<group>"; };
 		70E3271B0C2B476AAC4C0D01 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,7 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				022C825E18972E8900CA4953 /* FARootViewController.h */,
-				022C825F18972E8900CA4953 /* FARootViewController.m */,
+				022C825F18972E8900CA4953 /* FARootViewController.mm */,
 				02EFA48218C1350D00C42C4C /* FAPeopleViewController.h */,
 				02EFA48318C1350D00C42C4C /* FAPeopleViewController.m */,
 				0292913E18C15597009DD431 /* FAEditPersonViewController.h */,
@@ -496,7 +496,7 @@
 				022C825318972E8900CA4953 /* main.m in Sources */,
 				0292914418C25EF8009DD431 /* FAAddPersonViewController.m in Sources */,
 				02EFA48A18C141D600C42C4C /* FAPicture.m in Sources */,
-				022C826018972E8900CA4953 /* FARootViewController.m in Sources */,
+				022C826018972E8900CA4953 /* FARootViewController.mm in Sources */,
 				02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -636,6 +636,36 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceAnthem/FaceAnthem-Prefix.pch";
 				INFOPLIST_FILE = "FaceAnthem/FaceAnthem-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-lc++",
+					"-lstdc++",
+					"-framework",
+					AVFoundation,
+					"-framework",
+					Accelerate,
+					"-framework",
+					AssetsLibrary,
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreImage,
+					"-framework",
+					CoreMedia,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					Foundation,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					UIKit,
+					"-framework",
+					opencv2,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -650,6 +680,36 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceAnthem/FaceAnthem-Prefix.pch";
 				INFOPLIST_FILE = "FaceAnthem/FaceAnthem-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-lc++",
+					"-lstdc++",
+					"-framework",
+					AVFoundation,
+					"-framework",
+					Accelerate,
+					"-framework",
+					AssetsLibrary,
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreImage,
+					"-framework",
+					CoreMedia,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					Foundation,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					UIKit,
+					"-framework",
+					opencv2,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -20,6 +20,18 @@
 
 @implementation FAFaceRecognizer
 
+static FAFaceRecognizer *singleton;
+
++ (FAFaceRecognizer *)sharedRecognizer
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        singleton = [[FAFaceRecognizer alloc] initWithEigenFaceRecognizer];
+    });
+    
+    return singleton;
+}
+
 - (id)init
 {
     self = [super init];
@@ -87,7 +99,7 @@
     
     for(FAPicture *picture in pictures)
     {
-        cv::Mat faceData = [[self class] dataToMat:picture.standardizedImageData
+        cv::Mat faceData = [FAOpenCVData dataToMat:picture.standardizedImageData
                                            width:@100
                                           height:@100];
         

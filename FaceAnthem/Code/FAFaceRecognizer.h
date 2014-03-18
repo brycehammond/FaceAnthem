@@ -13,6 +13,8 @@
 
 @interface FAFaceRecognizer : NSObject
 
++ (FAFaceRecognizer *)sharedRecognizer;
+
 - (id)initWithEigenFaceRecognizer;
 - (id)initWithFisherFaceRecognizer;
 - (id)initWithLBPHFaceRecognizer;
