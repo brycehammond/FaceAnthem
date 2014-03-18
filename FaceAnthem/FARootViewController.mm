@@ -9,6 +9,7 @@
 #import "FARootViewController.h"
 #import "FAFaceDetector.h"
 #import "FAFaceRecognizer.h"
+#import "FAOpenCVData.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define kCaptureFPS 30
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     self.faceDetector = [[FAFaceDetector alloc] init];
     self.faceRecognizer = [[FAFaceRecognizer alloc] initWithEigenFaceRecognizer];
+    [self.faceRecognizer trainModel];
     
     [self setupCamera];
 }
@@ -52,11 +54,46 @@
     self.videoCamera.grayscaleMode = NO;
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)viewDidAppear:(BOOL)animated
 {
-    // We support only Portrait.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    [super viewDidAppear:animated];
+    [self.faceRecognizer trainModel];
+    [self.videoCamera start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.videoCamera stop];
+}
+
+- (void)processImage:(cv::Mat&)image
+{
+    [self parseFaces:[self.faceDetector facesFromImage:image] forImage:image];
+}
+
+- (void)parseFaces:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image
+{
+    if(faces.size() <= 0)
+        return;
+    
+    // We only care about the first face
+    cv::Rect face = faces[0];
+    
+    // By default highlight the face in red, no match found
+    UIColor *highlightColor = [UIColor redColor];
+    
+    FAPerson *match = [self.faceRecognizer recognizedFace:face inImage:image];
+    if(nil != match)
+    {
+        // Match found
+        highlightColor = [UIColor greenColor];
+    }
+    
+    // All changes to the UI have to happen on the main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self highlightFace:[FAOpenCVData faceToCGRect:face] withColor:highlightColor];
+    });
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

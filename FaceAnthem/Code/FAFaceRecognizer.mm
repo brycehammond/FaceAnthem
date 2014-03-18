@@ -35,7 +35,9 @@ static FAFaceRecognizer *singleton;
 - (id)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
+        self.trained = NO;
     }
     
     return self;
@@ -107,13 +109,22 @@ static FAFaceRecognizer *singleton;
         labels.push_back(picture.person.recognitionIdentifierValue);
     }
 
-    if (images.size() > 0 && labels.size() > 0) {
+    if (images.size() > 0 && labels.size() > 0)
+    {
         _recognizerModel->train(images, labels);
+        self.trained = YES;
+    }
+    else
+    {
+        self.trained = NO;
     }
 }
 
 - (FAPerson *)recognizedFace:(cv::Rect)face inImage:(cv::Mat&)image
 {
+    if(NO == self.trained)
+        return nil;
+    
     int predictedLabel = -1;
     double confidence = 0.0;
     _recognizerModel->predict([self pullStandardizedFace:face fromImage:image], predictedLabel, confidence);

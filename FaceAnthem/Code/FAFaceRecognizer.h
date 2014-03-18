@@ -13,6 +13,8 @@
 
 @interface FAFaceRecognizer : NSObject
 
+@property (nonatomic, assign) BOOL trained;
+
 + (FAFaceRecognizer *)sharedRecognizer;
 
 - (id)initWithEigenFaceRecognizer;

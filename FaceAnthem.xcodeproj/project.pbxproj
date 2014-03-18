@@ -48,6 +48,7 @@
 		02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */; };
 		02AFFDC218D6A922007A46BF /* FAFaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDC118D6A922007A46BF /* FAFaceDetector.mm */; };
 		02AFFDC618D7F675007A46BF /* FAOpenCVData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDC518D7F675007A46BF /* FAOpenCVData.mm */; };
+		02DF342418D81DF10051E7CB /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 02DF342318D81DF10051E7CB /* haarcascade_frontalface_alt2.xml */; };
 		02EFA48418C1350D00C42C4C /* FAPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48318C1350D00C42C4C /* FAPeopleViewController.m */; };
 		02EFA48718C141C900C42C4C /* _FAPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48618C141C900C42C4C /* _FAPicture.m */; };
 		02EFA48A18C141D600C42C4C /* FAPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48918C141D600C42C4C /* FAPicture.m */; };
@@ -110,6 +111,7 @@
 		02AFFDC118D6A922007A46BF /* FAFaceDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAFaceDetector.mm; path = Code/FAFaceDetector.mm; sourceTree = "<group>"; };
 		02AFFDC418D7F675007A46BF /* FAOpenCVData.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = FAOpenCVData.h; path = Code/FAOpenCVData.h; sourceTree = "<group>"; };
 		02AFFDC518D7F675007A46BF /* FAOpenCVData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAOpenCVData.mm; path = Code/FAOpenCVData.mm; sourceTree = "<group>"; };
+		02DF342318D81DF10051E7CB /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
 		02EFA48218C1350D00C42C4C /* FAPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPeopleViewController.h; path = Code/FAPeopleViewController.h; sourceTree = "<group>"; };
 		02EFA48318C1350D00C42C4C /* FAPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPeopleViewController.m; path = Code/FAPeopleViewController.m; sourceTree = "<group>"; };
 		02EFA48518C141C900C42C4C /* _FAPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FAPicture.h; path = Code/MOGenerated/_FAPicture.h; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		022C824D18972E8900CA4953 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				02DF342318D81DF10051E7CB /* haarcascade_frontalface_alt2.xml */,
 				022C824E18972E8900CA4953 /* FaceAnthem-Info.plist */,
 				022C824F18972E8900CA4953 /* InfoPlist.strings */,
 				022C825218972E8900CA4953 /* main.m */,
@@ -414,6 +417,7 @@
 			files = (
 				022C825D18972E8900CA4953 /* Main_iPad.storyboard in Resources */,
 				022C826218972E8900CA4953 /* Images.xcassets in Resources */,
+				02DF342418D81DF10051E7CB /* haarcascade_frontalface_alt2.xml in Resources */,
 				022C825A18972E8900CA4953 /* Main_iPhone.storyboard in Resources */,
 				022C825118972E8900CA4953 /* InfoPlist.strings in Resources */,
 			);
