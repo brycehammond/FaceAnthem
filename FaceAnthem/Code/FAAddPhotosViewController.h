@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <opencv2/highgui/cap_ios.h>
 
 @class FAAddPhotosViewController;
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface FAAddPhotosViewController : UIViewController
+@interface FAAddPhotosViewController : UIViewController <CvVideoCameraDelegate>
 
 @property (nonatomic, weak) id<FAAddPhotosViewControllerDelegate> delegate;
 

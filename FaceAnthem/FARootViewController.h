@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "FAPeopleViewController.h"
-#import <opencv2/highgui/cap_ios.h>
 
 @interface FARootViewController : UIViewController
     <

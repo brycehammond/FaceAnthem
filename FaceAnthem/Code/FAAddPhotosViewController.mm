@@ -1,43 +1,64 @@
 //
-//  FARootViewController.m
+//  FAAddPhotosViewController.m
 //  FaceAnthem
 //
-//  Created by Bryce Hammond on 1/27/14.
+//  Created by Bryce Hammond on 3/2/14.
 //  Copyright (c) 2014 Imulus. All rights reserved.
 //
 
-#import "FARootViewController.h"
+#import "FAAddPhotosViewController.h"
+#import "FAOpenCVData.h"
 #import "FAFaceDetector.h"
 #import "FAFaceRecognizer.h"
-#import "FAOpenCVData.h"
-#import <QuartzCore/QuartzCore.h>
 
-@interface FARootViewController ()
+@interface FAAddPhotosViewController ()
+{
+    cv::Mat _currentImage;
+    cv::Rect _currentFace;
+}
 
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UIButton *cameraButton;
+@property (strong, nonatomic) IBOutlet UIButton *switchCameraButton;
+@property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
 @property (nonatomic, strong) FAFaceDetector *faceDetector;
-@property (nonatomic, strong) FAFaceRecognizer *faceRecognizer;
 @property (nonatomic, strong) CvVideoCamera* videoCamera;
 @property (nonatomic, strong) CALayer *featureLayer;
+@property (nonatomic, assign) BOOL hasFaces;
+
+@property (nonatomic, strong) NSMutableArray *photos;
 
 @end
 
-@implementation FARootViewController
+@implementation FAAddPhotosViewController
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [super viewDidLoad];
-    self.faceDetector = [[FAFaceDetector alloc] init];
-    self.faceRecognizer = [[FAFaceRecognizer alloc] initWithEigenFaceRecognizer];
-    
-    [self setupCamera];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self setupController];
+    }
+    return self;
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    [self setupController];
+}
+
+- (void)setupController
+{
+    self.photos = [[NSMutableArray alloc] init];
+    self.hasFaces = NO;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	self.faceDetector = [[FAFaceDetector alloc] init];
+    
+    [self setupCamera];
 }
 
 - (void)setupCamera
@@ -54,7 +75,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.faceRecognizer trainModel];
     [self.videoCamera start];
 }
 
@@ -72,35 +92,28 @@
 - (void)parseFaces:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image
 {
     if(faces.size() <= 0)
+    {
+        self.hasFaces = NO;
         return;
+    }
+    else
+    {
+        self.hasFaces = YES;
+    }
+        ;
     
     // We only care about the first face
     cv::Rect face = faces[0];
+    _currentFace = face;
+    _currentImage = image;
     
-    // By default highlight the face in red, no match found
+    // By default highlight the face in red
     UIColor *highlightColor = [UIColor redColor];
-    
-    FAPerson *match = [self.faceRecognizer recognizedFace:face inImage:image];
-    if(nil != match)
-    {
-        // Match found
-        highlightColor = [UIColor greenColor];
-    }
     
     // All changes to the UI have to happen on the main thread
     dispatch_async(dispatch_get_main_queue(), ^{
         [self highlightFace:[FAOpenCVData faceToCGRect:face] withColor:highlightColor];
     });
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"People"])
-    {
-        UINavigationController *navController = segue.destinationViewController;
-        FAPeopleViewController *peopleController = navController.viewControllers.firstObject;
-        peopleController.delegate = self;
-    }
 }
 
 - (void)highlightFace:(CGRect)faceRect withColor:(UIColor *)color
@@ -129,12 +142,33 @@
     [self.videoCamera start];
 }
 
-#pragma mark -
-#pragma mark FAPeopleViewControllerDelegate
-
-- (void)didDismissPeopleViewController:(FAPeopleViewController *)peopleController
+- (void)didReceiveMemoryWarning
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)done:(id)sender
+{
+    [self.delegate didDismissAddPhotosViewController:self withPhotos:self.photos];
+}
+
+- (IBAction)takePicture:(id)sender
+{
+    if(self.hasFaces)
+    {
+        CGRect faceRect = [FAOpenCVData faceToCGRect:_currentFace];
+        UIImage *fullImage = [FAOpenCVData UIImageFromMat:_currentImage];
+        
+        //get the subimage
+        CGImageRef imageRef = CGImageCreateWithImageInRect([fullImage CGImage], faceRect);
+        UIImage *faceImage = [UIImage imageWithCGImage:imageRef];
+        [self.photos addObject:faceImage];
+        CGImageRelease(imageRef);
+        
+        self.previewImageView.image = faceImage;
+        
+    }
 }
 
 @end

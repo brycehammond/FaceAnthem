@@ -19,6 +19,6 @@
     #import <Foundation/Foundation.h>
     #import "UIView+IMUFrameConvenience.h"
     #import "UIStoryboard+FaceAnthem.h"
-
+    #import "FAConstants.h"
     #import "CoreData+MagicalRecord.h"
 #endif
