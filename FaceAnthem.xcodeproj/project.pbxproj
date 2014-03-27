@@ -34,11 +34,6 @@
 		022C825D18972E8900CA4953 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022C825B18972E8900CA4953 /* Main_iPad.storyboard */; };
 		022C826018972E8900CA4953 /* FARootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 022C825F18972E8900CA4953 /* FARootViewController.mm */; };
 		022C826218972E8900CA4953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 022C826118972E8900CA4953 /* Images.xcassets */; };
-		022C826918972E8900CA4953 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C826818972E8900CA4953 /* XCTest.framework */; };
-		022C826A18972E8900CA4953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824618972E8900CA4953 /* Foundation.framework */; };
-		022C826B18972E8900CA4953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824A18972E8900CA4953 /* UIKit.framework */; };
-		022C827318972E8900CA4953 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 022C827118972E8900CA4953 /* InfoPlist.strings */; };
-		022C827518972E8900CA4953 /* FaceAnthemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C827418972E8900CA4953 /* FaceAnthemTests.m */; };
 		022C82811897343700CA4953 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C82801897343700CA4953 /* QuartzCore.framework */; };
 		022C829918977CC800CA4953 /* UIStoryboard+FaceAnthem.m in Sources */ = {isa = PBXBuildFile; fileRef = 022C829818977CC800CA4953 /* UIStoryboard+FaceAnthem.m */; };
 		027BE10218DE3051002FCD6B /* FAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 027BE10118DE3051002FCD6B /* FAConstants.m */; };
@@ -59,16 +54,6 @@
 		02F423D2189D9D3B00042E9D /* FAFaceRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02F423D1189D9D3B00042E9D /* FAFaceRecognizer.mm */; };
 		C8D015C4EFD540DCB477AF28 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 020A7AD7B4654E87B5ADB98B /* libPods.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		022C826C18972E8900CA4953 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 022C823B18972E8900CA4953 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 022C824218972E8900CA4953;
-			remoteInfo = FaceAnthem;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		020A7AD7B4654E87B5ADB98B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,11 +77,7 @@
 		022C825E18972E8900CA4953 /* FARootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FARootViewController.h; sourceTree = "<group>"; };
 		022C825F18972E8900CA4953 /* FARootViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FARootViewController.mm; sourceTree = "<group>"; };
 		022C826118972E8900CA4953 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		022C826718972E8900CA4953 /* FaceAnthemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceAnthemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		022C826818972E8900CA4953 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		022C827018972E8900CA4953 /* FaceAnthemTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FaceAnthemTests-Info.plist"; sourceTree = "<group>"; };
-		022C827218972E8900CA4953 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		022C827418972E8900CA4953 /* FaceAnthemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceAnthemTests.m; sourceTree = "<group>"; };
 		022C827E1897311400CA4953 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		022C82801897343700CA4953 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		022C82821897343C00CA4953 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -151,16 +132,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		022C826418972E8900CA4953 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				022C826918972E8900CA4953 /* XCTest.framework in Frameworks */,
-				022C826B18972E8900CA4953 /* UIKit.framework in Frameworks */,
-				022C826A18972E8900CA4953 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -203,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				022C824C18972E8900CA4953 /* FaceAnthem */,
-				022C826E18972E8900CA4953 /* FaceAnthemTests */,
 				022C824518972E8900CA4953 /* Frameworks */,
 				022C824418972E8900CA4953 /* Products */,
 				70E3271B0C2B476AAC4C0D01 /* Pods.xcconfig */,
@@ -214,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				022C824318972E8900CA4953 /* FaceAnthem.app */,
-				022C826718972E8900CA4953 /* FaceAnthemTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,24 +231,6 @@
 				022C824F18972E8900CA4953 /* InfoPlist.strings */,
 				022C825218972E8900CA4953 /* main.m */,
 				022C825418972E8900CA4953 /* FaceAnthem-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		022C826E18972E8900CA4953 /* FaceAnthemTests */ = {
-			isa = PBXGroup;
-			children = (
-				022C827418972E8900CA4953 /* FaceAnthemTests.m */,
-				022C826F18972E8900CA4953 /* Supporting Files */,
-			);
-			path = FaceAnthemTests;
-			sourceTree = "<group>";
-		};
-		022C826F18972E8900CA4953 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				022C827018972E8900CA4953 /* FaceAnthemTests-Info.plist */,
-				022C827118972E8900CA4953 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -392,24 +343,6 @@
 			productReference = 022C824318972E8900CA4953 /* FaceAnthem.app */;
 			productType = "com.apple.product-type.application";
 		};
-		022C826618972E8900CA4953 /* FaceAnthemTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 022C827B18972E8900CA4953 /* Build configuration list for PBXNativeTarget "FaceAnthemTests" */;
-			buildPhases = (
-				022C826318972E8900CA4953 /* Sources */,
-				022C826418972E8900CA4953 /* Frameworks */,
-				022C826518972E8900CA4953 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				022C826D18972E8900CA4953 /* PBXTargetDependency */,
-			);
-			name = FaceAnthemTests;
-			productName = FaceAnthemTests;
-			productReference = 022C826718972E8900CA4953 /* FaceAnthemTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -419,11 +352,6 @@
 				CLASSPREFIX = FA;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Imulus;
-				TargetAttributes = {
-					022C826618972E8900CA4953 = {
-						TestTargetID = 022C824218972E8900CA4953;
-					};
-				};
 			};
 			buildConfigurationList = 022C823E18972E8900CA4953 /* Build configuration list for PBXProject "FaceAnthem" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -439,7 +367,6 @@
 			projectRoot = "";
 			targets = (
 				022C824218972E8900CA4953 /* FaceAnthem */,
-				022C826618972E8900CA4953 /* FaceAnthemTests */,
 				02F423CB189D80B100042E9D /* MOGenerator */,
 			);
 		};
@@ -455,14 +382,6 @@
 				02DF342418D81DF10051E7CB /* haarcascade_frontalface_alt2.xml in Resources */,
 				022C825A18972E8900CA4953 /* Main_iPhone.storyboard in Resources */,
 				022C825118972E8900CA4953 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		022C826518972E8900CA4953 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				022C827318972E8900CA4953 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,23 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		022C826318972E8900CA4953 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				022C827518972E8900CA4953 /* FaceAnthemTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		022C826D18972E8900CA4953 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 022C824218972E8900CA4953 /* FaceAnthem */;
-			targetProxy = 022C826C18972E8900CA4953 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		022C824F18972E8900CA4953 /* InfoPlist.strings */ = {
@@ -584,14 +487,6 @@
 				022C825C18972E8900CA4953 /* Base */,
 			);
 			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		022C827118972E8900CA4953 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				022C827218972E8900CA4953 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -757,46 +652,6 @@
 			};
 			name = Release;
 		};
-		022C827C18972E8900CA4953 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FaceAnthem.app/FaceAnthem";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FaceAnthem/FaceAnthem-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "FaceAnthemTests/FaceAnthemTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		022C827D18972E8900CA4953 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FaceAnthem.app/FaceAnthem";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FaceAnthem/FaceAnthem-Prefix.pch";
-				INFOPLIST_FILE = "FaceAnthemTests/FaceAnthemTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 		02F423CD189D80B100042E9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -828,15 +683,6 @@
 			buildConfigurations = (
 				022C827918972E8900CA4953 /* Debug */,
 				022C827A18972E8900CA4953 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		022C827B18972E8900CA4953 /* Build configuration list for PBXNativeTarget "FaceAnthemTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				022C827C18972E8900CA4953 /* Debug */,
-				022C827D18972E8900CA4953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
