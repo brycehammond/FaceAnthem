@@ -10,4 +10,6 @@
 
 @implementation FAConstants
 
+NSInteger const FACaptureFPS = 30;
+
 @end

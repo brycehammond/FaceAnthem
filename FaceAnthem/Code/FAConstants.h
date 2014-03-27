@@ -10,6 +10,7 @@
 
 @interface FAConstants : NSObject
 
-#define kCaptureFPS 30
+//Constants
+extern NSInteger const FACaptureFPS;
 
 @end
