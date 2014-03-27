@@ -83,11 +83,26 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FAImageCollectionViewCell *photoCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
+    photoCell.delegate = self;
     
     [photoCell setImage:[self.personPictures[indexPath.row] image]];
     
     
     return photoCell;
+}
+
+
+#pragma mark -
+#pragma mark FAImageCollectionViewCellDelegate
+
+- (void)didPressDeleteOnImageCollectionViewCell:(FAImageCollectionViewCell *)cell
+{
+    NSIndexPath *indexPath = [self.picturesCollectionView indexPathForCell:cell];
+    FAPicture *pictureToDelete = self.personPictures[indexPath.row];
+    [pictureToDelete MR_deleteEntity];
+    [self.personPictures removeObjectAtIndex:indexPath.row];
+    [self.picturesCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 }
 
 

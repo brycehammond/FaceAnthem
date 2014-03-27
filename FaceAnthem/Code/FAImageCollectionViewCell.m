@@ -35,6 +35,18 @@
 {
     self.internalImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     [self.contentView addSubview:self.internalImageView];
+    
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [deleteButton setBackgroundColor:[UIColor clearColor]];
+    [deleteButton setTitle:@"X" forState:UIControlStateNormal];
+    deleteButton.frame = CGRectMake(0,0,30,30);
+    [deleteButton addTarget:self action:@selector(deletePressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:deleteButton];
+}
+
+- (void)deletePressed:(id)sender
+{
+    [self.delegate didPressDeleteOnImageCollectionViewCell:self];
 }
 
 - (void)setImage:(UIImage *)image

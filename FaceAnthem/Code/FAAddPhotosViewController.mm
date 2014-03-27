@@ -155,7 +155,7 @@
 
 - (IBAction)takePicture:(id)sender
 {
-    if(self.hasFaces)
+    if(self.hasFaces && _currentImage.data != NULL)
     {
         CGRect faceRect = [FAOpenCVData faceToCGRect:_currentFace];
         UIImage *fullImage = [FAOpenCVData UIImageFromMat:_currentImage];

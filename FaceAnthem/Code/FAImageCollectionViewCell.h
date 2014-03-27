@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class FAImageCollectionViewCell;
+
+@protocol FAImageCollectionViewCellDelegate <NSObject>
+
+- (void)didPressDeleteOnImageCollectionViewCell:(FAImageCollectionViewCell *)cell;
+
+@end
+
 @interface FAImageCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, weak) id<FAImageCollectionViewCellDelegate> delegate;
 
 - (void)setImage:(UIImage *)image;
 

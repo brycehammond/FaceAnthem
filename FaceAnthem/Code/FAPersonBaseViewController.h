@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FAAddPhotosViewController.h"
+#import "FAImageCollectionViewCell.h"
 
 @class FAPerson;
 
-@interface FAPersonBaseViewController : UIViewController <FAAddPhotosViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface FAPersonBaseViewController : UIViewController <FAAddPhotosViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, FAImageCollectionViewCellDelegate>
 
 
 @property (nonatomic, weak) IBOutlet UICollectionView *picturesCollectionView;

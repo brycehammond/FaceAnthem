@@ -10,6 +10,7 @@
 #import "FAPerson.h"
 
 @interface FAEditPersonViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @end
