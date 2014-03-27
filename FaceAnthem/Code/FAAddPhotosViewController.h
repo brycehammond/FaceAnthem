@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Imulus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <opencv2/highgui/cap_ios.h>
+#import "FABaseCameraViewController.h"
 
 @class FAAddPhotosViewController;
 
@@ -17,7 +16,7 @@
 
 @end
 
-@interface FAAddPhotosViewController : UIViewController <CvVideoCameraDelegate>
+@interface FAAddPhotosViewController : FABaseCameraViewController
 
 @property (nonatomic, weak) id<FAAddPhotosViewControllerDelegate> delegate;
 

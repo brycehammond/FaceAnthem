@@ -17,13 +17,8 @@
     cv::Rect _currentFace;
 }
 
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UIButton *cameraButton;
-@property (strong, nonatomic) IBOutlet UIButton *switchCameraButton;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
-@property (nonatomic, strong) FAFaceDetector *faceDetector;
-@property (nonatomic, strong) CvVideoCamera* videoCamera;
-@property (nonatomic, strong) CALayer *featureLayer;
 @property (nonatomic, assign) BOOL hasFaces;
 
 @property (nonatomic, strong) NSMutableArray *photos;
@@ -53,42 +48,6 @@
     self.hasFaces = NO;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	self.faceDetector = [[FAFaceDetector alloc] init];
-    
-    [self setupCamera];
-}
-
-- (void)setupCamera
-{
-    self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
-    self.videoCamera.delegate = self;
-    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
-    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultFPS = kCaptureFPS;
-    self.videoCamera.grayscaleMode = NO;
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.videoCamera start];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.videoCamera stop];
-}
-
-- (void)processImage:(cv::Mat&)image
-{
-    [self parseFaces:[self.faceDetector facesFromImage:image] forImage:image];
-}
-
 - (void)parseFaces:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image
 {
     if(faces.size() <= 0)
@@ -112,34 +71,8 @@
     
     // All changes to the UI have to happen on the main thread
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self highlightFace:[FAOpenCVData faceToCGRect:face] withColor:highlightColor];
+        [self highlightFace:[FAOpenCVData faceToCGRect:face] withColor:highlightColor andPersonObjectId:nil withConfidence:0];
     });
-}
-
-- (void)highlightFace:(CGRect)faceRect withColor:(UIColor *)color
-{
-    if (self.featureLayer == nil) {
-        self.featureLayer = [[CALayer alloc] init];
-        self.featureLayer.borderWidth = 4.0;
-    }
-    
-    [self.imageView.layer addSublayer:self.featureLayer];
-    
-    self.featureLayer.hidden = NO;
-    self.featureLayer.borderColor = color.CGColor;
-    self.featureLayer.frame = faceRect;
-}
-
-- (IBAction)switchCameraClicked:(id)sender {
-    [self.videoCamera stop];
-    
-    if (self.videoCamera.defaultAVCaptureDevicePosition == AVCaptureDevicePositionFront) {
-        self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    } else {
-        self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    }
-    
-    [self.videoCamera start];
 }
 
 - (void)didReceiveMemoryWarning

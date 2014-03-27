@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Imulus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FABaseCameraViewController.h"
 #import "FAPeopleViewController.h"
 
-@interface FARootViewController : UIViewController
+@interface FARootViewController : FABaseCameraViewController
     <
-    UIGestureRecognizerDelegate,
-    FAPeopleViewControllerDelegate,
-    CvVideoCameraDelegate
+    FAPeopleViewControllerDelegate
     >
+
+
 
 
 @end

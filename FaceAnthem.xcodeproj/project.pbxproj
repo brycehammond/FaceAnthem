@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		021B7DF818E3CDBE00C68A59 /* FAImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 021B7DF718E3CDBE00C68A59 /* FAImageCollectionViewCell.m */; };
+		021B7DFB18E3E5C400C68A59 /* FABaseCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 021B7DFA18E3E5C400C68A59 /* FABaseCameraViewController.mm */; };
 		022C824718972E8900CA4953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824618972E8900CA4953 /* Foundation.framework */; };
 		022C824918972E8900CA4953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824818972E8900CA4953 /* CoreGraphics.framework */; };
 		022C824B18972E8900CA4953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824A18972E8900CA4953 /* UIKit.framework */; };
@@ -76,6 +77,8 @@
 		020A7AD7B4654E87B5ADB98B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		021B7DF618E3CDBE00C68A59 /* FAImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAImageCollectionViewCell.h; path = Code/FAImageCollectionViewCell.h; sourceTree = "<group>"; };
 		021B7DF718E3CDBE00C68A59 /* FAImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAImageCollectionViewCell.m; path = Code/FAImageCollectionViewCell.m; sourceTree = "<group>"; };
+		021B7DF918E3E5C400C68A59 /* FABaseCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FABaseCameraViewController.h; path = Code/FABaseCameraViewController.h; sourceTree = "<group>"; };
+		021B7DFA18E3E5C400C68A59 /* FABaseCameraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FABaseCameraViewController.mm; path = Code/FABaseCameraViewController.mm; sourceTree = "<group>"; };
 		022C824318972E8900CA4953 /* FaceAnthem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceAnthem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		022C824618972E8900CA4953 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		022C824818972E8900CA4953 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -301,6 +304,8 @@
 				0292914618C451BD009DD431 /* FAAddPhotosViewController.mm */,
 				02AFFDBD18D4E2E6007A46BF /* FAPersonBaseViewController.h */,
 				02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.mm */,
+				021B7DF918E3E5C400C68A59 /* FABaseCameraViewController.h */,
+				021B7DFA18E3E5C400C68A59 /* FABaseCameraViewController.mm */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021B7DFB18E3E5C400C68A59 /* FABaseCameraViewController.mm in Sources */,
 				022C829918977CC800CA4953 /* UIStoryboard+FaceAnthem.m in Sources */,
 				02EFA48718C141C900C42C4C /* _FAPicture.m in Sources */,
 				0292914718C451BD009DD431 /* FAAddPhotosViewController.mm in Sources */,

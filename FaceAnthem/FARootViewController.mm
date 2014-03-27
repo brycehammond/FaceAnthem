@@ -7,7 +7,6 @@
 //
 
 #import "FARootViewController.h"
-#import "FAFaceDetector.h"
 #import "FAFaceRecognizer.h"
 #import "FAOpenCVData.h"
 #import "FAPerson.h"
@@ -15,11 +14,7 @@
 
 @interface FARootViewController ()
 
-@property (nonatomic, strong) IBOutlet UIImageView *imageView;
-@property (nonatomic, strong) FAFaceDetector *faceDetector;
 @property (nonatomic, strong) FAFaceRecognizer *faceRecognizer;
-@property (nonatomic, strong) CvVideoCamera* videoCamera;
-@property (nonatomic, strong) CALayer *featureLayer;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *confidenceLabel;
 
@@ -32,10 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.faceDetector = [[FAFaceDetector alloc] init];
-    self.faceRecognizer = [[FAFaceRecognizer alloc] initWithEigenFaceRecognizer];
     
-    [self setupCamera];
+    self.faceRecognizer = [[FAFaceRecognizer alloc] initWithEigenFaceRecognizer];
 }
 
 - (void)awakeFromNib
@@ -43,33 +36,11 @@
     [super awakeFromNib];
 }
 
-- (void)setupCamera
-{
-    self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
-    self.videoCamera.delegate = self;
-    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
-    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultFPS = kCaptureFPS;
-    self.videoCamera.grayscaleMode = NO;
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
     [self.faceRecognizer trainModel];
-    [self.videoCamera start];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.videoCamera stop];
-}
-
-- (void)processImage:(cv::Mat&)image
-{
-    [self parseFaces:[self.faceDetector facesFromImage:image] forImage:image];
+    [super viewDidAppear:animated];
+    
 }
 
 - (void)parseFaces:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image
@@ -112,16 +83,7 @@
 
 - (void)highlightFace:(CGRect)faceRect withColor:(UIColor *)color andPersonObjectId:matchId withConfidence:(CGFloat)confidence
 {
-    if (self.featureLayer == nil) {
-        self.featureLayer = [[CALayer alloc] init];
-        self.featureLayer.borderWidth = 4.0;
-    }
-    
-    [self.imageView.layer addSublayer:self.featureLayer];
-    
-    self.featureLayer.hidden = NO;
-    self.featureLayer.borderColor = color.CGColor;
-    self.featureLayer.frame = faceRect;
+    [super highlightFace:faceRect withColor:color andPersonObjectId:matchId withConfidence:confidence];
     
     if(matchId)
     {
@@ -129,18 +91,6 @@
         self.nameLabel.text = person.name;
         self.confidenceLabel.text = [NSString stringWithFormat:@"%0.6f",confidence];
     }
-}
-
-- (IBAction)switchCameraClicked:(id)sender {
-    [self.videoCamera stop];
-    
-    if (self.videoCamera.defaultAVCaptureDevicePosition == AVCaptureDevicePositionFront) {
-        self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    } else {
-        self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    }
-    
-    [self.videoCamera start];
 }
 
 #pragma mark -
