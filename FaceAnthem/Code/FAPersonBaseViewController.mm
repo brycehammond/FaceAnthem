@@ -47,6 +47,11 @@
 }
 
 
+- (IBAction)anthemSelected:(id)sender
+{
+    
+}
+
 #pragma mark -
 #pragma mark FAAddPhotosViewControllerDelegate
 

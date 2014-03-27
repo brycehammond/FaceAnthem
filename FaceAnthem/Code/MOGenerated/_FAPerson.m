@@ -6,6 +6,7 @@
 const struct FAPersonAttributes FAPersonAttributes = {
 	.name = @"name",
 	.recognitionIdentifier = @"recognitionIdentifier",
+	.songId = @"songId",
 };
 
 const struct FAPersonRelationships FAPersonRelationships = {
@@ -46,6 +47,11 @@ const struct FAPersonFetchedProperties FAPersonFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"songIdValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"songId"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -80,6 +86,32 @@ const struct FAPersonFetchedProperties FAPersonFetchedProperties = {
 
 - (void)setPrimitiveRecognitionIdentifierValue:(int32_t)value_ {
 	[self setPrimitiveRecognitionIdentifier:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+@dynamic songId;
+
+
+
+- (int64_t)songIdValue {
+	NSNumber *result = [self songId];
+	return [result longLongValue];
+}
+
+- (void)setSongIdValue:(int64_t)value_ {
+	[self setSongId:[NSNumber numberWithLongLong:value_]];
+}
+
+- (int64_t)primitiveSongIdValue {
+	NSNumber *result = [self primitiveSongId];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveSongIdValue:(int64_t)value_ {
+	[self setPrimitiveSongId:[NSNumber numberWithLongLong:value_]];
 }
 
 

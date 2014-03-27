@@ -178,6 +178,32 @@
 			name = "Collection View Cells";
 			sourceTree = "<group>";
 		};
+		021B7DFC18E3ED8600C68A59 /* Camera Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				021B7DF918E3E5C400C68A59 /* FABaseCameraViewController.h */,
+				021B7DFA18E3E5C400C68A59 /* FABaseCameraViewController.mm */,
+				022C825E18972E8900CA4953 /* FARootViewController.h */,
+				022C825F18972E8900CA4953 /* FARootViewController.mm */,
+				0292914518C451BD009DD431 /* FAAddPhotosViewController.h */,
+				0292914618C451BD009DD431 /* FAAddPhotosViewController.mm */,
+			);
+			name = "Camera Controllers";
+			sourceTree = "<group>";
+		};
+		021B7DFD18E3EDA500C68A59 /* Person Detail Views */ = {
+			isa = PBXGroup;
+			children = (
+				02AFFDBD18D4E2E6007A46BF /* FAPersonBaseViewController.h */,
+				02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.mm */,
+				0292913E18C15597009DD431 /* FAEditPersonViewController.h */,
+				0292913F18C15597009DD431 /* FAEditPersonViewController.m */,
+				0292914218C25EF8009DD431 /* FAAddPersonViewController.h */,
+				0292914318C25EF8009DD431 /* FAAddPersonViewController.m */,
+			);
+			name = "Person Detail Views";
+			sourceTree = "<group>";
+		};
 		022C823A18972E8900CA4953 = {
 			isa = PBXGroup;
 			children = (
@@ -292,20 +318,10 @@
 		02F423BA189D709100042E9D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				022C825E18972E8900CA4953 /* FARootViewController.h */,
-				022C825F18972E8900CA4953 /* FARootViewController.mm */,
+				021B7DFD18E3EDA500C68A59 /* Person Detail Views */,
+				021B7DFC18E3ED8600C68A59 /* Camera Controllers */,
 				02EFA48218C1350D00C42C4C /* FAPeopleViewController.h */,
 				02EFA48318C1350D00C42C4C /* FAPeopleViewController.mm */,
-				0292913E18C15597009DD431 /* FAEditPersonViewController.h */,
-				0292913F18C15597009DD431 /* FAEditPersonViewController.m */,
-				0292914218C25EF8009DD431 /* FAAddPersonViewController.h */,
-				0292914318C25EF8009DD431 /* FAAddPersonViewController.m */,
-				0292914518C451BD009DD431 /* FAAddPhotosViewController.h */,
-				0292914618C451BD009DD431 /* FAAddPhotosViewController.mm */,
-				02AFFDBD18D4E2E6007A46BF /* FAPersonBaseViewController.h */,
-				02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.mm */,
-				021B7DF918E3E5C400C68A59 /* FABaseCameraViewController.h */,
-				021B7DFA18E3E5C400C68A59 /* FABaseCameraViewController.mm */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

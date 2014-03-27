@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="FAPerson" representedClassName="FAPerson" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="recognitionIdentifier" optional="YES" attributeType="Integer 32" indexed="YES" syncable="YES"/>
+        <attribute name="songId" optional="YES" attributeType="Integer 64" syncable="YES"/>
         <relationship name="pictures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FAPicture" inverseName="person" inverseEntity="FAPicture" syncable="YES"/>
     </entity>
     <entity name="FAPicture" representedClassName="FAPicture" syncable="YES">
@@ -11,7 +12,7 @@
         <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FAPerson" inverseName="pictures" inverseEntity="FAPerson" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FAPerson" positionX="153" positionY="206" width="128" height="88"/>
+        <element name="FAPerson" positionX="153" positionY="206" width="128" height="103"/>
         <element name="FAPicture" positionX="351" positionY="216" width="128" height="88"/>
     </elements>
 </model>

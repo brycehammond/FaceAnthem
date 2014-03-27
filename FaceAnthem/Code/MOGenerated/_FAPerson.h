@@ -7,6 +7,7 @@
 extern const struct FAPersonAttributes {
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *recognitionIdentifier;
+	__unsafe_unretained NSString *songId;
 } FAPersonAttributes;
 
 extern const struct FAPersonRelationships {
@@ -17,6 +18,7 @@ extern const struct FAPersonFetchedProperties {
 } FAPersonFetchedProperties;
 
 @class FAPicture;
+
 
 
 
@@ -58,6 +60,20 @@ extern const struct FAPersonFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* songId;
+
+
+
+@property int64_t songIdValue;
+- (int64_t)songIdValue;
+- (void)setSongIdValue:(int64_t)value_;
+
+//- (BOOL)validateSongId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSSet *pictures;
 
 - (NSMutableSet*)picturesSet;
@@ -91,6 +107,15 @@ extern const struct FAPersonFetchedProperties {
 
 - (int32_t)primitiveRecognitionIdentifierValue;
 - (void)setPrimitiveRecognitionIdentifierValue:(int32_t)value_;
+
+
+
+
+- (NSNumber*)primitiveSongId;
+- (void)setPrimitiveSongId:(NSNumber*)value;
+
+- (int64_t)primitiveSongIdValue;
+- (void)setPrimitiveSongIdValue:(int64_t)value_;
 
 
 
