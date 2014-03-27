@@ -8,6 +8,7 @@
 
 #import "FAPersonBaseViewController.h"
 #import "FAPicture.h"
+#import "FAPerson.h"
 #import "FAOpenCVData.h"
 #import "FAImageCollectionViewCell.h"
 
@@ -49,7 +50,11 @@
 
 - (IBAction)anthemSelected:(id)sender
 {
-    
+    MPMediaPickerController *mediaPicker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeMusic];
+    mediaPicker.delegate = self;
+    mediaPicker.showsCloudItems = NO;
+    mediaPicker.allowsPickingMultipleItems = NO;
+    [self presentViewController:mediaPicker animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -110,5 +115,21 @@
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 }
 
+#pragma mark -
+#pragma mark MPMediaPickerControllerDelegate
+
+- (void)mediaPicker: (MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection
+{
+    //store the persistant id as the song id
+    MPMediaItem *item = [mediaItemCollection items][0];
+    self.person.songId = [item valueForProperty:MPMediaItemPropertyPersistentID];
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

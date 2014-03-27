@@ -4,6 +4,7 @@
 #import "_FAPerson.h"
 
 const struct FAPersonAttributes FAPersonAttributes = {
+	.anthemLastPlayedAt = @"anthemLastPlayedAt",
 	.name = @"name",
 	.recognitionIdentifier = @"recognitionIdentifier",
 	.songId = @"songId",
@@ -55,6 +56,13 @@ const struct FAPersonFetchedProperties FAPersonFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic anthemLastPlayedAt;
+
+
 
 
 

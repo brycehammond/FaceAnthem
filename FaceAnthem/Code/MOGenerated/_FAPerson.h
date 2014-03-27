@@ -5,6 +5,7 @@
 
 
 extern const struct FAPersonAttributes {
+	__unsafe_unretained NSString *anthemLastPlayedAt;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *recognitionIdentifier;
 	__unsafe_unretained NSString *songId;
@@ -23,6 +24,7 @@ extern const struct FAPersonFetchedProperties {
 
 
 
+
 @interface FAPersonID : NSManagedObjectID {}
 @end
 
@@ -31,6 +33,16 @@ extern const struct FAPersonFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (FAPersonID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSDate* anthemLastPlayedAt;
+
+
+
+//- (BOOL)validateAnthemLastPlayedAt:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -94,6 +106,12 @@ extern const struct FAPersonFetchedProperties {
 @end
 
 @interface _FAPerson (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSDate*)primitiveAnthemLastPlayedAt;
+- (void)setPrimitiveAnthemLastPlayedAt:(NSDate*)value;
+
+
 
 
 - (NSString*)primitiveName;

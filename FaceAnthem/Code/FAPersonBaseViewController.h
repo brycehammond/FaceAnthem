@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FAAddPhotosViewController.h"
 #import "FAImageCollectionViewCell.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @class FAPerson;
 
-@interface FAPersonBaseViewController : UIViewController <FAAddPhotosViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, FAImageCollectionViewCellDelegate>
+@interface FAPersonBaseViewController : UIViewController <FAAddPhotosViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, FAImageCollectionViewCellDelegate, MPMediaPickerControllerDelegate>
 
 
 @property (nonatomic, weak) IBOutlet UICollectionView *picturesCollectionView;

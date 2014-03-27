@@ -21,9 +21,20 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self setupController];
     }
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setupController];
+}
+
+- (void)setupController
+{
+    self.personPictures = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidLoad
