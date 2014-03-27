@@ -1,5 +1,8 @@
 #import "_FAPicture.h"
 
 @interface FAPicture : _FAPicture {}
-// Custom logic goes here.
+
+@property (nonatomic, assign) UIImage *image;
+@property (nonatomic, assign) cv::Mat standardizedImage;
+
 @end

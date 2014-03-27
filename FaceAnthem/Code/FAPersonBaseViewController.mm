@@ -7,6 +7,9 @@
 //
 
 #import "FAPersonBaseViewController.h"
+#import "FAPicture.h"
+#import "FAOpenCVData.h"
+#import "FAImageCollectionViewCell.h"
 
 @interface FAPersonBaseViewController ()
 
@@ -18,14 +21,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
-}
-
-- (void)setupController
-{
-    self.personPictures = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidLoad
@@ -55,10 +52,43 @@
 
 - (void)didDismissAddPhotosViewController:(FAAddPhotosViewController *)controller withPhotos:(NSArray *)photos
 {
-    [self.personPictures addObjectsFromArray:photos];
+    //turn the photos into FAPictures
+    for(UIImage *photo in photos)
+    {
+        FAPicture *picture = [FAPicture MR_createEntity];
+        picture.image = photo;
+        
+        cv::Mat faceImage = [FAOpenCVData cvMatFromUIImage:photo];
+        
+        // Standardize the face to 100x100 pixels
+        cv::resize(faceImage, faceImage, cv::Size(100, 100), 0, 0);
+        
+        picture.standardizedImage = faceImage;
+        [self.personPictures addObject:picture];
+        
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.picturesCollectionView reloadData];
 }
 
+#pragma mark -
+#pragma mark UICollectionViewDelegate/Datasource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.personPictures.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    FAImageCollectionViewCell *photoCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
+    
+    [photoCell setImage:[self.personPictures[indexPath.row] image]];
+    
+    
+    return photoCell;
+}
 
 
 @end

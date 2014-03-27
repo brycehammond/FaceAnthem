@@ -16,6 +16,8 @@
 
 @implementation FAEditPersonViewController
 
+@synthesize person = _person;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -23,10 +25,17 @@
 
 }
 
+- (void)setPerson:(FAPerson *)person
+{
+    _person = person;
+    self.personPictures = self.person.pictures.allObjects.mutableCopy;
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     self.person.name = self.nameTextField.text;
+    self.person.pictures = [NSSet setWithArray:self.personPictures];
     [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
     
 }

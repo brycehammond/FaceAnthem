@@ -11,9 +11,10 @@
 
 @class FAPerson;
 
-@interface FAPersonBaseViewController : UIViewController <FAAddPhotosViewControllerDelegate>
+@interface FAPersonBaseViewController : UIViewController <FAAddPhotosViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 
+@property (nonatomic, weak) IBOutlet UICollectionView *picturesCollectionView;
 @property (nonatomic, strong) FAPerson *person;
 @property (nonatomic, strong) NSMutableArray *personPictures;
 

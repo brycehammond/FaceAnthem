@@ -40,6 +40,8 @@
 
 - (IBAction)cancel:(id)sender
 {
+    [self.personPictures makeObjectsPerformSelector:@selector(MR_deleteEntity)]; //delete any pictures we may have taken
+    [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveOnlySelfAndWait];
     [self.delegate didCancelAddPersonViewController:self];
 }
 
@@ -49,6 +51,7 @@
     {
         FAPerson *person = [FAPerson MR_createEntity];
         person.name = self.nameTextField.text;
+        person.pictures = [NSSet setWithArray:self.personPictures];
         
         if([FAPerson MR_hasAtLeastOneEntity])
         {

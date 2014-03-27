@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		021B7DF818E3CDBE00C68A59 /* FAImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 021B7DF718E3CDBE00C68A59 /* FAImageCollectionViewCell.m */; };
 		022C824718972E8900CA4953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824618972E8900CA4953 /* Foundation.framework */; };
 		022C824918972E8900CA4953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824818972E8900CA4953 /* CoreGraphics.framework */; };
 		022C824B18972E8900CA4953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022C824A18972E8900CA4953 /* UIKit.framework */; };
@@ -46,13 +47,13 @@
 		0292914018C15597009DD431 /* FAEditPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292913F18C15597009DD431 /* FAEditPersonViewController.m */; };
 		0292914418C25EF8009DD431 /* FAAddPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292914318C25EF8009DD431 /* FAAddPersonViewController.m */; };
 		0292914718C451BD009DD431 /* FAAddPhotosViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0292914618C451BD009DD431 /* FAAddPhotosViewController.mm */; };
-		02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */; };
+		02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.mm */; };
 		02AFFDC218D6A922007A46BF /* FAFaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDC118D6A922007A46BF /* FAFaceDetector.mm */; };
 		02AFFDC618D7F675007A46BF /* FAOpenCVData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02AFFDC518D7F675007A46BF /* FAOpenCVData.mm */; };
 		02DF342418D81DF10051E7CB /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 02DF342318D81DF10051E7CB /* haarcascade_frontalface_alt2.xml */; };
 		02EFA48418C1350D00C42C4C /* FAPeopleViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48318C1350D00C42C4C /* FAPeopleViewController.mm */; };
 		02EFA48718C141C900C42C4C /* _FAPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48618C141C900C42C4C /* _FAPicture.m */; };
-		02EFA48A18C141D600C42C4C /* FAPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48918C141D600C42C4C /* FAPicture.m */; };
+		02EFA48A18C141D600C42C4C /* FAPicture.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48918C141D600C42C4C /* FAPicture.mm */; };
 		02EFA48F18C14DB800C42C4C /* FAPersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EFA48E18C14DB800C42C4C /* FAPersonCell.m */; };
 		02F423C2189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02F423C0189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld */; };
 		02F423C6189D7FD000042E9D /* FAPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F423C5189D7FD000042E9D /* FAPerson.m */; };
@@ -73,6 +74,8 @@
 
 /* Begin PBXFileReference section */
 		020A7AD7B4654E87B5ADB98B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		021B7DF618E3CDBE00C68A59 /* FAImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAImageCollectionViewCell.h; path = Code/FAImageCollectionViewCell.h; sourceTree = "<group>"; };
+		021B7DF718E3CDBE00C68A59 /* FAImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAImageCollectionViewCell.m; path = Code/FAImageCollectionViewCell.m; sourceTree = "<group>"; };
 		022C824318972E8900CA4953 /* FaceAnthem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceAnthem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		022C824618972E8900CA4953 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		022C824818972E8900CA4953 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,7 +112,7 @@
 		0292914518C451BD009DD431 /* FAAddPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAAddPhotosViewController.h; path = Code/FAAddPhotosViewController.h; sourceTree = "<group>"; };
 		0292914618C451BD009DD431 /* FAAddPhotosViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAAddPhotosViewController.mm; path = Code/FAAddPhotosViewController.mm; sourceTree = "<group>"; };
 		02AFFDBD18D4E2E6007A46BF /* FAPersonBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPersonBaseViewController.h; path = Code/FAPersonBaseViewController.h; sourceTree = "<group>"; };
-		02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPersonBaseViewController.m; path = Code/FAPersonBaseViewController.m; sourceTree = "<group>"; };
+		02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAPersonBaseViewController.mm; path = Code/FAPersonBaseViewController.mm; sourceTree = "<group>"; };
 		02AFFDC018D6A922007A46BF /* FAFaceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAFaceDetector.h; path = Code/FAFaceDetector.h; sourceTree = "<group>"; };
 		02AFFDC118D6A922007A46BF /* FAFaceDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAFaceDetector.mm; path = Code/FAFaceDetector.mm; sourceTree = "<group>"; };
 		02AFFDC418D7F675007A46BF /* FAOpenCVData.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = FAOpenCVData.h; path = Code/FAOpenCVData.h; sourceTree = "<group>"; };
@@ -120,7 +123,7 @@
 		02EFA48518C141C900C42C4C /* _FAPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _FAPicture.h; path = Code/MOGenerated/_FAPicture.h; sourceTree = "<group>"; };
 		02EFA48618C141C900C42C4C /* _FAPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _FAPicture.m; path = Code/MOGenerated/_FAPicture.m; sourceTree = "<group>"; };
 		02EFA48818C141D600C42C4C /* FAPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPicture.h; path = Code/FAPicture.h; sourceTree = "<group>"; };
-		02EFA48918C141D600C42C4C /* FAPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPicture.m; path = Code/FAPicture.m; sourceTree = "<group>"; };
+		02EFA48918C141D600C42C4C /* FAPicture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = FAPicture.mm; path = Code/FAPicture.mm; sourceTree = "<group>"; };
 		02EFA48D18C14DB800C42C4C /* FAPersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FAPersonCell.h; path = Code/FAPersonCell.h; sourceTree = "<group>"; };
 		02EFA48E18C14DB800C42C4C /* FAPersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FAPersonCell.m; path = Code/FAPersonCell.m; sourceTree = "<group>"; };
 		02F423C1189D7E3200042E9D /* FaceAnthemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FaceAnthemModel.xcdatamodel; sourceTree = "<group>"; };
@@ -163,6 +166,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021B7DF518E3CD5900C68A59 /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				021B7DF618E3CDBE00C68A59 /* FAImageCollectionViewCell.h */,
+				021B7DF718E3CDBE00C68A59 /* FAImageCollectionViewCell.m */,
+			);
+			name = "Collection View Cells";
+			sourceTree = "<group>";
+		};
 		022C823A18972E8900CA4953 = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +271,7 @@
 		02EFA48B18C14D8C00C42C4C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				021B7DF518E3CD5900C68A59 /* Collection View Cells */,
 				02EFA48C18C14D9100C42C4C /* Table View Cells */,
 			);
 			name = Views;
@@ -287,7 +300,7 @@
 				0292914518C451BD009DD431 /* FAAddPhotosViewController.h */,
 				0292914618C451BD009DD431 /* FAAddPhotosViewController.mm */,
 				02AFFDBD18D4E2E6007A46BF /* FAPersonBaseViewController.h */,
-				02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.m */,
+				02AFFDBE18D4E2E6007A46BF /* FAPersonBaseViewController.mm */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -323,7 +336,7 @@
 				02F423C4189D7FD000042E9D /* FAPerson.h */,
 				02F423C5189D7FD000042E9D /* FAPerson.m */,
 				02EFA48818C141D600C42C4C /* FAPicture.h */,
-				02EFA48918C141D600C42C4C /* FAPicture.m */,
+				02EFA48918C141D600C42C4C /* FAPicture.mm */,
 				02F423C0189D7E3200042E9D /* FaceAnthemModel.xcdatamodeld */,
 			);
 			name = CoreData;
@@ -504,10 +517,11 @@
 				02EFA48F18C14DB800C42C4C /* FAPersonCell.m in Sources */,
 				0292914018C15597009DD431 /* FAEditPersonViewController.m in Sources */,
 				022C825318972E8900CA4953 /* main.m in Sources */,
+				021B7DF818E3CDBE00C68A59 /* FAImageCollectionViewCell.m in Sources */,
 				0292914418C25EF8009DD431 /* FAAddPersonViewController.m in Sources */,
-				02EFA48A18C141D600C42C4C /* FAPicture.m in Sources */,
+				02EFA48A18C141D600C42C4C /* FAPicture.mm in Sources */,
 				022C826018972E8900CA4953 /* FARootViewController.mm in Sources */,
-				02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.m in Sources */,
+				02AFFDBF18D4E2E6007A46BF /* FAPersonBaseViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -159,11 +159,38 @@
                                     <segue destination="8aI-SK-MRA" kind="modal" identifier="NewPersonAddPhotos" modalTransitionStyle="coverVertical" id="Hhs-We-Cex"/>
                                 </connections>
                             </button>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="c8O-bC-brE">
+                                <rect key="frame" x="0.0" y="171" width="320" height="397"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="bTi-Dk-bJf">
+                                    <size key="itemSize" width="80" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="qu5-YF-1Nj" customClass="FAImageCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="P3N-Rb-ZoE" id="x2h-JZ-Q5z"/>
+                                    <outlet property="delegate" destination="P3N-Rb-ZoE" id="XNM-Qi-q8p"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="nameTextField" destination="dMQ-nw-frc" id="4Ux-jo-9P5"/>
+                        <outlet property="picturesCollectionView" destination="c8O-bC-brE" id="REx-k9-b4S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rj3-gs-Zcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,7 +214,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="O9V-Cc-kmU">
-                                        <rect key="frame" x="20" y="497" width="70" height="70"/>
+                                        <rect key="frame" x="20" y="492" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
@@ -219,7 +246,7 @@
                     <connections>
                         <outlet property="cameraButton" destination="XP4-I8-nBU" id="TX9-Bx-164"/>
                         <outlet property="imageView" destination="3uf-vR-Asq" id="ssf-dO-nZ4"/>
-                        <outlet property="lastImageView" destination="O9V-Cc-kmU" id="HNq-CH-AX0"/>
+                        <outlet property="previewImageView" destination="O9V-Cc-kmU" id="Yrs-sI-WRu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXk-gk-7fM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,6 +280,32 @@
                                     <segue destination="8aI-SK-MRA" kind="modal" identifier="ExistingPersonAddPhotos" modalTransitionStyle="coverVertical" id="6LW-x7-q8B"/>
                                 </connections>
                             </button>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="tEp-Tk-gCo">
+                                <rect key="frame" x="0.0" y="171" width="320" height="397"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="NOr-le-OF5">
+                                    <size key="itemSize" width="80" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="lbC-uG-JmO" customClass="FAImageCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="9Bs-1y-ksa" id="6M5-it-IZQ"/>
+                                    <outlet property="delegate" destination="9Bs-1y-ksa" id="nva-9c-sOQ"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -261,6 +314,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="20y-gZ-jbw" id="d1v-aq-H0r"/>
+                        <outlet property="picturesCollectionView" destination="tEp-Tk-gCo" id="G2x-da-e8Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CmD-Md-H2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
