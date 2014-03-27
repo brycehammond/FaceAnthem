@@ -10,6 +10,7 @@
 #import "FAFaceDetector.h"
 #import "FAFaceRecognizer.h"
 #import "FAOpenCVData.h"
+#import "FAPerson.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FARootViewController ()
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) FAFaceRecognizer *faceRecognizer;
 @property (nonatomic, strong) CvVideoCamera* videoCamera;
 @property (nonatomic, strong) CALayer *featureLayer;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *confidenceLabel;
 
 @end
 
@@ -79,17 +82,21 @@
     
     // By default highlight the face in red, no match found
     UIColor *highlightColor = [UIColor redColor];
+    NSManagedObjectID *matchId = nil;
+    CGFloat confidence = 0.0f;
     
     FAPerson *match = [self.faceRecognizer recognizedFace:face inImage:image];
     if(nil != match)
     {
         // Match found
         highlightColor = [UIColor greenColor];
+        matchId = match.objectID; //pass the object id across the threads as NSManagedObjects aren't threadsafe
+        confidence = match.recognitionConfidence;
     }
     
     // All changes to the UI have to happen on the main thread
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self highlightFace:[FAOpenCVData faceToCGRect:face] withColor:highlightColor];
+        [self highlightFace:[FAOpenCVData faceToCGRect:face] withColor:highlightColor andPersonObjectId:matchId withConfidence:confidence];
     });
 }
 
@@ -103,7 +110,7 @@
     }
 }
 
-- (void)highlightFace:(CGRect)faceRect withColor:(UIColor *)color
+- (void)highlightFace:(CGRect)faceRect withColor:(UIColor *)color andPersonObjectId:matchId withConfidence:(CGFloat)confidence
 {
     if (self.featureLayer == nil) {
         self.featureLayer = [[CALayer alloc] init];
@@ -115,6 +122,13 @@
     self.featureLayer.hidden = NO;
     self.featureLayer.borderColor = color.CGColor;
     self.featureLayer.frame = faceRect;
+    
+    if(matchId)
+    {
+        FAPerson *person = (FAPerson *)[[NSManagedObjectContext MR_contextForCurrentThread] objectWithID:matchId];
+        self.nameLabel.text = person.name;
+        self.confidenceLabel.text = [NSString stringWithFormat:@"%0.6f",confidence];
+    }
 }
 
 - (IBAction)switchCameraClicked:(id)sender {
